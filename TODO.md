@@ -1,0 +1,3 @@
+- 完善服务端的 ts、eslint、prettier
+- 解决 frontend/tsconfig.node.json 的报错
+- 构建 docker 容器
