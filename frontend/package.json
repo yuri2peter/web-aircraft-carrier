@@ -28,9 +28,11 @@
     "formik": "^2.2.9",
     "immer": "^9.0.17",
     "lodash": "^4.17.21",
+    "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
+    "socket.io-client": "^4.5.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

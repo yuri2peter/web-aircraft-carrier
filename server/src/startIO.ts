@@ -24,6 +24,7 @@ export function startIO(server: http.Server) {
     clientSet.add(client);
     socket.on("login", (userId: string) => {
       client.data.userId = userId;
+      console.log(`[socket] User ${userId} logged in.`);
     });
     socket.on("disconnect", () => {
       clientSet.delete(client);

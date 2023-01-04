@@ -5,13 +5,11 @@ const HomePage = () => {
   return (
     <div>
       <h1>Home</h1>
-      <p>
-        <ul>
-          <li>
-            <Link to="/example">example</Link>
-          </li>
-        </ul>
-      </p>
+      <ul>
+        <li>
+          <Link to="/example">example</Link>
+        </li>
+      </ul>
     </div>
   );
 };
