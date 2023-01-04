@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing server packages..."
-cd ./server
+cd ../server
 npm ci
 mkdir -p ./html/resources
 mkdir -p ./html/frontend
