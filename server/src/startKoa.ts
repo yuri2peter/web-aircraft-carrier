@@ -15,7 +15,13 @@ export function startKoa() {
   app.use(cors());
   app.use(new CSRF());
   app.use(
-    staticServer(ROOT_PATH + "/html", {
+    staticServer(ROOT_PATH + "/html/frontend", {
+      maxAge: 30 * 24 * 3600 * 1000, // 30天的强缓存
+      immutable: true, // 声明资源是不会变更的可以永久缓存
+    })
+  );
+  app.use(
+    staticServer(ROOT_PATH + "/html/resources", {
       maxAge: 30 * 24 * 3600 * 1000, // 30天的强缓存
       immutable: true, // 声明资源是不会变更的可以永久缓存
     })
