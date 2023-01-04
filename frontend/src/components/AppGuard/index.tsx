@@ -2,22 +2,26 @@ import { io } from 'socket.io-client';
 import { nanoid } from 'nanoid';
 import React, { useLayoutEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { SERVER_ORIGIN } from 'src/defines/constants';
+import { SERVER_ORIGIN, USE_SOCKET } from 'src/defines/constants';
+import debugLog from 'src/utils/debugLog';
 
 const socketUserId = nanoid();
 
 function useSocket() {
+  if (!USE_SOCKET) {
+    return;
+  }
   useLayoutEffect(() => {
     const socket = io(SERVER_ORIGIN);
     socket.on('connect', () => {
-      console.log('Socket connected.');
+      debugLog('Socket connected.');
       socket.emit('login', socketUserId);
     });
     socket.on('connect_error', () => {
-      console.log('Socket connect error.');
+      debugLog('Socket connect error.');
     });
     socket.on('disconnect', () => {
-      console.log('Socket disconnected.');
+      debugLog('Socket disconnected.');
     });
     return () => {
       socket.disconnect();
@@ -26,7 +30,7 @@ function useSocket() {
 }
 
 const AppGuard: React.FC = () => {
-  console.log('AppGuard loaded.');
+  debugLog('AppGuard loaded.');
   useSocket();
   return <Outlet />;
 };

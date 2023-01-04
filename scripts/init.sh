@@ -5,11 +5,11 @@ cd ../server
 npm ci
 mkdir -p ./html/resources
 mkdir -p ./html/frontend
-cp .env .env.local
+touch .env.local
 
 echo "Installing frontend packages..."
 cd ../frontend
 npm ci
-cp .env .env.local
+touch .env.local
 
 echo "Done."
