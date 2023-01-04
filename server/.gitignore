@@ -1,4 +1,4 @@
 /node_modules
 /html
-/db
+/volumes
 .env.local

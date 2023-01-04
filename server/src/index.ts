@@ -1,8 +1,10 @@
 import { startKoa } from "./startKoa";
 import { startIO } from "./startIO";
+import { initDb } from "./db";
 import { PORT } from "../constant";
 
 async function main() {
+  await initDb();
   const server = startKoa();
   startIO(server);
 
