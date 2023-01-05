@@ -1,0 +1,17 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  myapp:
+    image: "myapp:v1"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./volumes/data:/app/server/data
+      - ./volumes/html:/app/server/html
+    ports:
+      - 3000:3000
+# networks:
+#   default:
+#     external:
+#       name: main

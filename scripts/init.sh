@@ -5,7 +5,7 @@ cd ../server
 npm ci
 mkdir -p ./html/resources
 mkdir -p ./html/frontend
-mkdir -p ./volumes
+mkdir -p ./data
 touch .env.local
 
 echo "Installing frontend packages..."

@@ -1,0 +1,8 @@
+.git
+TODO.md
+*/node_modules
+.vscode
+docker
+frontend/dist
+server/html
+server/data

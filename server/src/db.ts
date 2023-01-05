@@ -2,7 +2,7 @@ import path from 'path';
 import { ROOT_PATH } from '../appSettings';
 import JsonDb from './libs/jsonDb';
 
-const dbFile = path.resolve(ROOT_PATH, './volumes/db/main.json');
+const dbFile = path.resolve(ROOT_PATH, './data/db/main.json');
 
 const defaultValue = { _restartCount: 0 };
 type Data = typeof defaultValue;
