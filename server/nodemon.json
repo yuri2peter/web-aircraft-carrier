@@ -1,0 +1,14 @@
+{
+  "verbose": false,
+  "watch": [
+    "src",
+    "package.json",
+    "appSettings",
+    "env/.env",
+    "env/.env.local",
+    "env/.env.production",
+    "env/.env.developement"
+  ],
+  "ext": "ts,tsx,js,json",
+  "delay": 2.5
+}

@@ -1,23 +1,11 @@
 {
-  "name": "node-server-template",
-  "version": "1.0.0",
-  "description": "NODEJS服务器模板。",
-  "main": "src/index.js",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=production ts-node src/index.ts",
-    "dev": "cross-env NODE_ENV=development nodemon --exec 'ts-node src/index.ts' --watch src --ext ts,js,json --watch .env.local",
+    "dev": "cross-env NODE_ENV=development nodemon --exec 'ts-node src/index.ts' --config nodemon.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yuri2peter/node-server-template.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yuri2peter/node-server-template/issues"
-  },
-  "homepage": "https://github.com/yuri2peter/node-server-template#readme",
   "dependencies": {
     "@koa/cors": "^4.0.0",
     "@next/env": "^12.3.1",

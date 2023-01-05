@@ -1,7 +1,7 @@
-import { startKoa } from "./startKoa";
-import { startIO } from "./startIO";
-import { initDb } from "./db";
-import { PORT } from "../constant";
+import { startKoa } from './startKoa';
+import { startIO } from './startIO';
+import { initDb } from './db';
+import { PORT } from '../appSettings';
 
 async function main() {
   await initDb();
@@ -9,7 +9,7 @@ async function main() {
   startIO(server);
 
   server.listen(PORT, () => {
-    console.log("listening on *:" + PORT);
+    console.log('listening on *:' + PORT);
   });
 }
 main();

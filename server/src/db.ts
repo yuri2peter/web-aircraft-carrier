@@ -1,5 +1,5 @@
 import path from 'path';
-import { ROOT_PATH } from '../constant';
+import { ROOT_PATH } from '../appSettings';
 import JsonDb from './libs/jsonDb';
 
 const dbFile = path.resolve(ROOT_PATH, './volumes/db/main.json');
