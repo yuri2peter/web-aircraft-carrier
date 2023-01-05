@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -f ./Dockerfile -t myapp:v3 ../
+docker build -f ./Dockerfile -t myapp:v1 ../

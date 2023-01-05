@@ -15,7 +15,7 @@ React Frontend + NodeJS Server + Docker Deployment all in one project.
 
 ## Documentation
 
-See more documentations in [here](./docs/list.md).
+See more documentations in [here](./docs/main.md).
 
 ## Quick Start
 
