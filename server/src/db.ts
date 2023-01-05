@@ -1,14 +1,14 @@
-import path from "path";
-import { ROOT_PATH } from "../constant";
-import JsonDb from "./libs/jsonDb";
+import path from 'path';
+import { ROOT_PATH } from '../constant';
+import JsonDb from './libs/jsonDb';
 
-const dbFile = path.resolve(ROOT_PATH, "./volumes/db/main.json");
+const dbFile = path.resolve(ROOT_PATH, './volumes/db/main.json');
 
 const defaultValue = { _restartCount: 0 };
 type Data = typeof defaultValue;
 const version = 1;
 
-export const db = new JsonDb({
+export const db = new JsonDb<Data>({
   file: dbFile,
   version,
   defaultValue,
@@ -16,7 +16,7 @@ export const db = new JsonDb({
     if (oldVersion !== version) {
       return defaultValue;
     } else {
-      return value as Data;
+      return value;
     }
   },
 });
