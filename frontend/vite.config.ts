@@ -25,4 +25,5 @@ export default defineConfig({
     host: true, // 监听所有地址，包括局域网和公网地址
     strictPort: true, // 端口被占用时，抛出错误
   },
+  envDir: './env',
 });
