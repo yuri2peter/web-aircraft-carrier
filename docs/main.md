@@ -15,10 +15,12 @@
 
 There are several env files you can use:
 
-- `.env` Base value.
-- `.env.development` For `development` mode only.
-- `.env.production` For `production` mode only.
-- `.env.local` Highest priority, should not tracked by git.
+- `.env`
+- `.env.local`
+- `.env.development`
+- `.env.development.local`
+- `.env.production`
+- `.env.production.local`
 
 > In particular, the frontend environment variables need to use the `FRONTEND_` prefix.
 
