@@ -4,23 +4,19 @@
 
 - koa, axios, fs-extra, immer, md5, nanoid, socket.io are preinstalled.
 - Default server port: 3000.
+- See more app settings in `src/configs.ts`.
 
 ## Frontend
 
 - Based on React + Typescript + [Vite](https://github.com/vitejs/vite).
 - mui, axios, formik, immer, lodash, nanoid, socket.io-client, yup, @yuri2/arrow-frog are preinstalled.
 - Default preview port: 8000.
+- See more app settings in `src/configs.ts`.
 
 ## Env Variables
 
-There are several env files you can use:
-
-- `.env`
-- `.env.local`
-- `.env.development`
-- `.env.development.local`
-- `.env.production`
-- `.env.production.local`
+There is only one env file `.env` can be used.
+We strongly recommend against committing your `.env` file to version control.
 
 > In particular, the frontend environment variables need to use the `FRONTEND_` prefix.
 

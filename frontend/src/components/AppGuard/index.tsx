@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 import { nanoid } from 'nanoid';
 import React, { useLayoutEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { SERVER_ORIGIN, USE_SOCKET } from 'src/defines/constants';
+import { SERVER_ORIGIN, USE_SOCKET } from 'src/configs';
 import debugLog from 'src/utils/debugLog';
 
 const socketUserId = nanoid();

@@ -33,7 +33,7 @@ interface DialogProps {
   onCancle: () => void;
 }
 
-const DialogConfirmHack: React.FC<{}> = () => {
+export const DialogConfirmHack: React.FC<{}> = () => {
   const [dialogProps, changeDialogProps] = useImmer({
     open: false,
     title: '',
@@ -45,31 +45,32 @@ const DialogConfirmHack: React.FC<{}> = () => {
     changeDialogProps((d) => {
       d.open = false;
     });
-  }, []);
-  const newConfirm = useCallback((title: string, content: string) => {
-    return new Promise<void>((resolve, reject) => {
-      changeDialogProps((d) => {
-        Object.assign(d, {
-          open: true,
-          title,
-          content,
-          onAgreen: () => {
-            handleClose();
-            resolve();
-          },
-          onCancle: () => {
-            handleClose();
-            reject();
-          },
+  }, [changeDialogProps]);
+  const newConfirm = useCallback(
+    (title: string, content: string) => {
+      return new Promise<void>((resolve, reject) => {
+        changeDialogProps((d) => {
+          Object.assign(d, {
+            open: true,
+            title,
+            content,
+            onAgreen: () => {
+              handleClose();
+              resolve();
+            },
+            onCancle: () => {
+              handleClose();
+              reject();
+            },
+          });
         });
       });
-    });
-  }, []);
+    },
+    [changeDialogProps, handleClose]
+  );
   refHack.current = newConfirm;
   return <AlertDialog {...dialogProps} />;
 };
-
-export default DialogConfirmHack;
 
 export function dialogConfirm(
   title = '确认操作?',

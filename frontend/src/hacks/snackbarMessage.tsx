@@ -14,14 +14,12 @@ const refEnqueueSnackbar = {
   ) => SnackbarKey,
 };
 
-const SnackbarHack: React.FC<{}> = () => {
+export const SnackbarHack: React.FC<{}> = () => {
   console.log(useSnackbar());
   const { enqueueSnackbar } = useSnackbar();
   refEnqueueSnackbar.current = enqueueSnackbar;
   return <></>;
 };
-
-export default SnackbarHack;
 
 export function snackbarMessage(
   message: string,
