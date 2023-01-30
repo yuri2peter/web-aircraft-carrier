@@ -1,7 +1,7 @@
 import { startKoa } from './startKoa';
 import { startIO } from './startIO';
 import { initDb } from './db';
-import { PORT } from '../configs';
+import { PORT } from './configs';
 
 async function main() {
   await initDb();
