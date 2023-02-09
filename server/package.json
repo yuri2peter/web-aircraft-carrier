@@ -1,9 +1,13 @@
 {
+  "name": "web-aircraft-carrier",
   "private": true,
   "version": "0.0.0",
+  "main": "electron-app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon --exec 'node index.js' --config nodemon.json",
+    "start-electron": "electron .",
+    "build-electron": "npx electron-packager --asar --overwrite . ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -37,6 +41,7 @@
     "@types/lokijs": "^1.5.7",
     "@types/md5": "^2.3.2",
     "@types/node": "^18.11.18",
+    "electron-packager": "^17.1.1",
     "nodemon": "^2.0.20"
   }
 }
