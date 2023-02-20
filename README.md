@@ -71,7 +71,7 @@ sh start.sh
 
 ```bash
 cd ./server
-npm i electron@22
+npm i electron@22 -D
 npm run start-electron
 ```
 
