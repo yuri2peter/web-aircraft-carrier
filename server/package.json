@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon --exec 'node index.js' --config nodemon.json",
     "start-electron": "electron .",
-    "build-electron": "npx electron-packager --asar --overwrite . ",
+    "build-electron": "npx electron-packager --asar --no-prune --overwrite . ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
