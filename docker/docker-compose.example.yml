@@ -9,9 +9,9 @@ services:
     ports:
       - 3000:3000
       
-    # You should copy volumes from container before mounting them!
-    # docker cp CONTAINER_ID:/app/server/data/ ./volumes/data/
-    # docker cp CONTAINER_ID:/app/server/html/ ./volumes/html/
+    # **You should copy volumes from container before mounting them!**
+    # docker cp CONTAINER_ID:/app/server/data/ ./volumes/
+    # docker cp CONTAINER_ID:/app/server/html/ ./volumes/
 
     # volumes:
       # - ./volumes/data/:/app/server/data/
