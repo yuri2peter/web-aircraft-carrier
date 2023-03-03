@@ -6,11 +6,17 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./volumes/data:/app/server/data
-      - ./volumes/html:/app/server/html
     ports:
       - 3000:3000
+      
+    # **You should copy volumes from container before mounting them!**
+    # docker cp CONTAINER_ID:/app/server/data/ ./volumes/
+    # docker cp CONTAINER_ID:/app/server/html/ ./volumes/
+
+    # volumes:
+      # - ./volumes/data/:/app/server/data/
+      # - ./volumes/html/:/app/server/html/
+
 # networks:
 #   default:
 #     external:

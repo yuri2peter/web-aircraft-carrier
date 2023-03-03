@@ -1,16 +1,9 @@
 // 模态框，受控打开和关闭
 import * as React from 'react';
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  Grid,
-  DialogTitle,
-  IconButton,
-  Breakpoint,
-} from '@mui/material';
-
+import { Box, Dialog, IconButton, Breakpoint, Typography } from '@mui/material';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import { CloseOutlined } from '@ant-design/icons';
+import RowStack from './RowStack';
 
 const Modal: React.FC<{
   children: React.ReactElement;
@@ -24,26 +17,20 @@ const Modal: React.FC<{
       maxWidth={maxWidth}
       onClose={onClose}
       open={open}
-      sx={{ '& .MuiDialog-paper': { p: 0 } }}
+      sx={{ '& .MuiDialog-paper': { p: 0, backgroundColor: '#00000099' } }}
     >
       {open && (
         <Box>
-          <Grid
-            container
-            justifyContent="space-between"
-            alignItems="center"
-            sx={{ borderBottom: '1px solid {theme.palette.divider}' }}
-          >
-            <Grid item>
-              <DialogTitle>{title}</DialogTitle>
-            </Grid>
-            <Grid item sx={{ mr: 1.5 }}>
-              <IconButton color="secondary" onClick={onClose}>
-                <CloseOutlined />
-              </IconButton>
-            </Grid>
-          </Grid>
-          <DialogContent>{children}</DialogContent>
+          <RowStack padding={2} paddingBottom={0}>
+            <AspectRatioIcon />
+            <Typography sx={{ flexGrow: 1 }}>{title}</Typography>
+            <IconButton onClick={onClose} size="small">
+              <CloseOutlined />
+            </IconButton>
+          </RowStack>
+          <Box padding={2} overflow={'auto'} maxHeight="70vh">
+            {children}
+          </Box>
         </Box>
       )}
     </Dialog>

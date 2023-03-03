@@ -15,7 +15,6 @@ const refEnqueueSnackbar = {
 };
 
 export const SnackbarHack: React.FC<{}> = () => {
-  console.log(useSnackbar());
   const { enqueueSnackbar } = useSnackbar();
   refEnqueueSnackbar.current = enqueueSnackbar;
   return <></>;
