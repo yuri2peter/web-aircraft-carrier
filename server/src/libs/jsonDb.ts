@@ -3,12 +3,14 @@
  * @author yuri2peter
  */
 
-import { throttle } from "lodash";
-import { Immutable, produce } from "immer";
-import fs from "fs-extra";
+import { Immutable, produce } from 'immer';
+import fs from 'fs-extra';
+import lodash from 'lodash';
+
+const { throttle } = lodash;
 
 export default class JsonDb<T> {
-  readonly file: string = "";
+  readonly file: string = '';
   readonly version: number = 0;
   private data: Immutable<T>;
   private autoSaveFile: () => void = () => {};
@@ -78,7 +80,7 @@ export default class JsonDb<T> {
 
   private loadFile(versionFixer?: (value: any, oldVersion: number) => T) {
     try {
-      const content = fs.readFileSync(this.file, "utf8");
+      const content = fs.readFileSync(this.file, 'utf8');
       const { data, version } = JSON.parse(content);
       // trying fix version
       this.data =
@@ -86,7 +88,7 @@ export default class JsonDb<T> {
           ? versionFixer(data, version)
           : data;
     } catch (error) {
-      console.log("[jsonDb] Error parsing db file, use default value.");
+      console.log('[jsonDb] Error parsing db file, use default value.');
     }
     this.saveFile();
   }

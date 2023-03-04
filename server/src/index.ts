@@ -9,7 +9,8 @@ async function main() {
   startIO(server);
 
   server.listen(PORT, () => {
-    console.log('listening on *:' + PORT);
+    console.log('listening on port:' + PORT);
+    console.log(`http://localhost:${PORT}`);
   });
 }
 main();

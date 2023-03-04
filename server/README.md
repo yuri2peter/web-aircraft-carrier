@@ -1,3 +1,12 @@
-# node-server-template
+# NodeJS Server
 
-niodejs服务端模板
+## Features
+
+- Typescript 4.9
+- ANY package type
+
+## Quick Start
+
+```bash
+npm run start
+```

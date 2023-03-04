@@ -6,7 +6,7 @@ import CSRF from 'koa-csrf';
 import staticServer from 'koa-static';
 import cors from '@koa/cors';
 import { ROOT_PATH } from './configs';
-import { main as controller } from './controllers';
+import { main as controller } from './controllers/index';
 
 export function startKoa() {
   const router = new Router();

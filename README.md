@@ -10,9 +10,7 @@ React Frontend + NodeJS Server + Docker Deployment all in one project.
 
 - One project for EVERYTHING you needed
 - TypeScript supported
-- Dynamic ENV variables
 - Tool Scripts for development and deployment
-- Electron template
 
 ## Documentation
 
@@ -67,17 +65,8 @@ Serve in production mode:
 sh start.sh
 ```
 
-## Use Electron
-
-```bash
-cd ./server
-npm i electron@22 -D
-npm run start-electron
-```
-
 ## Standard System Requirements
 
 - CentOS 7
 - NodeJS
-- Docker
 - Docker Compose

@@ -1,3 +1,4 @@
 .vscode
+dist
 docker/volumes
 docker/docker-compose.yml

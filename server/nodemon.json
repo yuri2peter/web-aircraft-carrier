@@ -1,6 +1,6 @@
 {
   "verbose": false,
-  "watch": ["src", "package.json", "configs.ts", ".env"],
-  "ext": "ts,tsx,js,json",
-  "delay": 2.5
+  "watch": ["dist", "package.json", ".env"],
+  "ext": "js,json",
+  "delay": 2500
 }
