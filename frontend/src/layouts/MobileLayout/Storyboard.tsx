@@ -13,7 +13,7 @@ const Storyboard: React.FC = () => {
     }, 3500);
   }, []);
   if (!show) {
-    // return null;
+    return null;
   }
   return (
     <Box
@@ -29,7 +29,7 @@ const Storyboard: React.FC = () => {
         zIndex: 999,
         background: '#434056',
       }}
-      className="animate__animated animate1__fadeOut animate__delay-3s animate__faster"
+      className="animate__animated animate__fadeOut animate__delay-3s animate__faster"
     >
       <CentralBox
         sx={{
