@@ -36,7 +36,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={myTheme}>
       <CssBaseline />
-      <LocalizationProvider dateAdapter={AdapterDateFns} locale={zhLocale}>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        adapterLocale={zhLocale}
+      >
         <BrowserRouter>
           <App />
         </BrowserRouter>

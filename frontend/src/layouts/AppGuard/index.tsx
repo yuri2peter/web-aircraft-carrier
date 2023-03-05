@@ -30,7 +30,6 @@ function useSocket() {
 }
 
 const AppGuard: React.FC = () => {
-  debugLog('AppGuard loaded.');
   useSocket();
   return <Outlet />;
 };

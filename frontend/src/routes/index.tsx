@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AppGuard from 'src/components/AppGuard';
+import AppGuard from 'src/layouts/AppGuard';
 import Loadable from 'src/components/Loadable';
 
 const HomePage = Loadable(lazy(() => import('src/pages/home')));
