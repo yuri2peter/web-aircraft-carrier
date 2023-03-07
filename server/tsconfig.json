@@ -1,17 +1,15 @@
 {
-  "include": ["src/**/*"],
   "compilerOptions": {
-    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "ESNext" /* Specify what module code is generated. */,
-    "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
-    "outDir": "dist" /* Specify an output folder for all emitted files. */,
-    "baseUrl": ".",
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied `any` type.. */,
-    "noImplicitThis": true /* Enable error reporting when `this` is given the type `any`. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-    "moduleResolution": "node"  /*  Specify the module resolution strategy. */,
-  }
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+  },
+  "include": ["./src/**/*"]
 }
