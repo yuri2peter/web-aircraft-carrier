@@ -65,8 +65,8 @@ Serve in production mode:
 sh start.sh
 ```
 
-## Standard System Requirements
+## Publish & Deployment
 
-- CentOS 7
-- NodeJS
-- Docker Compose
+- See `./docker`
+- Create a protable node app with [node-app-protable](https://github.com/yuri2peter/node-app-protable)
+- Create a electron app (comnig soon...)

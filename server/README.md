@@ -10,3 +10,7 @@
 ```bash
 npm run start
 ```
+
+## More
+
+See more commands at `package.json`.
