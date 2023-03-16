@@ -17,7 +17,7 @@ const Modal: React.FC<{
       maxWidth={maxWidth}
       onClose={onClose}
       open={open}
-      sx={{ '& .MuiDialog-paper': { p: 0, backgroundColor: '#00000099' } }}
+      sx={{ '& .MuiDialog-paper': { p: 0 } }}
     >
       {open && (
         <Box>
