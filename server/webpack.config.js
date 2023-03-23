@@ -1,8 +1,7 @@
-const { NormalModuleReplacementPlugin } = require('webpack');
 const path = require('path');
+const { NormalModuleReplacementPlugin } = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -27,7 +26,6 @@ const config = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new NodePolyfillPlugin(),
     new LodashModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({
