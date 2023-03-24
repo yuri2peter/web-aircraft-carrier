@@ -1,7 +1,11 @@
+import fs from 'fs-extra';
 import path from 'path';
 import dotenv from 'dotenv';
 
-dotenv.config();
+const envFile = path.join(__dirname, '../.env');
+fs.ensureFileSync(envFile);
+
+dotenv.config({ path: envFile });
 
 const env = process.env as unknown as {
   PORT?: string;
