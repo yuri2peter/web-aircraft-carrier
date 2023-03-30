@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import zhLocale from 'date-fns/locale/zh-CN';
@@ -32,6 +32,10 @@ dayjs.locale('zh-cn'); // 使用本地化语言
 
 enableMapSet(); // immer跟踪set
 
+// 启用BrowserRouter or HashRouter
+const useBrowserRouter = false;
+const RouterProvider = useBrowserRouter ? BrowserRouter : HashRouter;
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={myTheme}>
@@ -40,9 +44,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         dateAdapter={AdapterDateFns}
         adapterLocale={zhLocale}
       >
-        <BrowserRouter>
+        <RouterProvider>
           <App />
-        </BrowserRouter>
+        </RouterProvider>
       </LocalizationProvider>
     </ThemeProvider>
   </React.StrictMode>
