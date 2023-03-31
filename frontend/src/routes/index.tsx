@@ -5,6 +5,7 @@ import Loadable from 'src/components/Loadable';
 import WindowLayout from 'src/layouts/WindowLayout';
 
 const LearnMorePage = Loadable(lazy(() => import('src/pages/learn-more')));
+const TestPage = Loadable(lazy(() => import('src/pages/test')));
 const HomePage = Loadable(lazy(() => import('src/pages/home')));
 
 function MainRoute() {
@@ -14,6 +15,7 @@ function MainRoute() {
         <Route path="/" element={<WindowLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/learn-more" element={<LearnMorePage />} />
+          <Route path="/test" element={<TestPage />} />
         </Route>
       </Route>
     </Routes>

@@ -7,33 +7,63 @@ import fs from 'fs-extra';
 import CSRF from 'koa-csrf';
 import staticServer from 'koa-static';
 import cors from '@koa/cors';
-import { ROOT_PATH } from './configs';
+import { MAX_FILE_SIZE, ROOT_PATH } from './configs';
 import { main as controller } from './controllers/index';
-
-const htmlFrontendPath = path.join(ROOT_PATH, 'html/frontend');
-const htmlResourcesPath = path.join(ROOT_PATH, 'html/resources');
+import { nanoid } from 'nanoid';
 
 export function startKoa() {
-  fs.ensureDirSync(htmlFrontendPath);
-  fs.ensureDirSync(htmlResourcesPath);
-  const router = new Router();
-  controller(router);
   const app = new Koa();
+  applyApp(app);
+  return http.createServer(app.callback());
+}
+
+function applyApp(app: Koa) {
   app.use(cors());
   app.use(new CSRF());
+
+  const htmlFrontendPath = path.join(ROOT_PATH, 'html/frontend');
+  const htmlResourcesPath = path.join(ROOT_PATH, 'html/resources');
+  fs.ensureDirSync(htmlFrontendPath);
+  fs.ensureDirSync(htmlResourcesPath);
+
   app.use(
     staticServer(htmlFrontendPath, {
-      maxAge: 30 * 24 * 3600 * 1000, // 30天的强缓存
-      immutable: true, // 声明资源是不会变更的可以永久缓存
+      maxAge: 30 * 24 * 3600 * 1000,
+      immutable: true,
     })
   );
   app.use(
     staticServer(htmlResourcesPath, {
-      maxAge: 30 * 24 * 3600 * 1000, // 30天的强缓存
-      immutable: true, // 声明资源是不会变更的可以永久缓存
+      maxAge: 30 * 24 * 3600 * 1000,
+      immutable: true,
     })
   );
-  app.use(bodyPaser({ jsonLimit: '100mb' }));
+
+  // body解析，文件上传
+  app.use(
+    bodyPaser({
+      jsonLimit: '100mb',
+      multipart: true,
+      formidable: {
+        uploadDir: ROOT_PATH + '/html/resources',
+        maxFileSize: MAX_FILE_SIZE * 1024 * 1024, // 100MB
+        multiples: false,
+        onFileBegin: (name, file) => {
+          const { originalFilename } = file;
+          const fileName = (originalFilename || '').replace(/[\/\\]/g, '');
+          const ext = path.extname(fileName);
+          // 使用原始名+随机文件名
+          const newFilename =
+            path.basename(fileName, ext) + '.' + nanoid() + ext;
+          file.newFilename = newFilename;
+          file.filepath = ROOT_PATH + '/html/resources/' + newFilename;
+        },
+      },
+    })
+  );
+
+  // 路由
+  const router = new Router();
   app.use(router.routes());
-  return http.createServer(app.callback());
+  controller(router);
 }
