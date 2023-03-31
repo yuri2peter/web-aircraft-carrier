@@ -150,7 +150,8 @@ function upload(
               originalFilename,
               size,
             } as UploadResults);
-          });
+          })
+          .catch(reject);
       } else {
         reject('cancelled upload');
       }
