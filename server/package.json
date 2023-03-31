@@ -12,11 +12,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "free-port": "npx kill-port 3000"
+    "free-port": "npx kill-port 3000",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "@local/common": "../common",
     "@koa/cors": "^4.0.0",
+    "@local/common": "../common",
     "@yuri2/markdown-parser": "^1.0.0",
     "axios": "^1.1.2",
     "dotenv": "^16.0.3",
@@ -54,6 +55,7 @@
     "lodash-webpack-plugin": "^0.11.6",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nodemon": "^2.0.20",
+    "patch-package": "^6.5.1",
     "ts-loader": "^9.4.2",
     "tsx": "^3.12.3",
     "typescript": "^4.9.5",

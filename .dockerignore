@@ -1,9 +1,0 @@
-.git
-TODO.md
-*/node_modules
-.vscode
-docker
-docs
-frontend/dist
-server/html
-server/data

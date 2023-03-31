@@ -24,6 +24,10 @@ const config = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      octetstream:
+        'node_modules/koa-body/node_modules/formidable/src/plugins/octetstream.js',
+    },
   },
   plugins: [
     new LodashModuleReplacementPlugin(),
