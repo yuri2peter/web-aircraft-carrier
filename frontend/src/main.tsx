@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear'; // 导入插件
 import relativeTime from 'dayjs/plugin/relativeTime'; // 导入插件
 import 'dayjs/locale/zh-cn'; // 导入本地化语言
+import { USE_SPA } from './configs';
 import App from './App';
 
 // mui字体
@@ -33,8 +34,7 @@ dayjs.locale('zh-cn'); // 使用本地化语言
 enableMapSet(); // immer跟踪set
 
 // 启用BrowserRouter or HashRouter
-const useBrowserRouter = false;
-const RouterProvider = useBrowserRouter ? BrowserRouter : HashRouter;
+const RouterProvider = USE_SPA ? BrowserRouter : HashRouter;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

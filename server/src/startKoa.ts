@@ -5,11 +5,14 @@ import http from 'http';
 import path from 'path';
 import fs from 'fs-extra';
 import CSRF from 'koa-csrf';
+import koaPushState from 'koa-push';
 import staticServer from 'koa-static';
 import cors from '@koa/cors';
 import { MAX_FILE_SIZE, ROOT_PATH } from './configs';
 import { main as controller } from './controllers/index';
 import { nanoid } from 'nanoid';
+
+const USE_SPA = true;
 
 export function startKoa() {
   const app = new Koa();
@@ -26,12 +29,17 @@ function applyApp(app: Koa) {
   fs.ensureDirSync(htmlFrontendPath);
   fs.ensureDirSync(htmlResourcesPath);
 
+  if (USE_SPA) {
+    app.use(koaPushState(htmlFrontendPath + '/index.html'));
+  }
+
   app.use(
     staticServer(htmlFrontendPath, {
       maxAge: 30 * 24 * 3600 * 1000,
       immutable: true,
     })
   );
+
   app.use(
     staticServer(htmlResourcesPath, {
       maxAge: 30 * 24 * 3600 * 1000,
