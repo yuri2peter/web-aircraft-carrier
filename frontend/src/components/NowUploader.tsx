@@ -58,12 +58,10 @@ const NowUploader: React.FC<Props> = ({
       const results = await upload(serverOrigin, axiosInstance);
       if (results) {
         onUploadSucceed(results);
-        alert(1);
         if (!disableAutoFill) {
           onChange(serverOrigin + '/' + results.newFilename);
         }
       } else {
-        alert(2);
         onUploadCancelled();
       }
     } catch (err) {
