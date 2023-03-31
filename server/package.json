@@ -15,9 +15,9 @@
     "free-port": "npx kill-port 3000",
     "postinstall": "patch-package"
   },
+  "comment": "Add `'@local/common': '../common'` if you want to use the local common library.",
   "dependencies": {
     "@koa/cors": "^4.0.0",
-    "@local/common": "../common",
     "@yuri2/markdown-parser": "^1.0.0",
     "axios": "^1.1.2",
     "dotenv": "^16.0.3",
