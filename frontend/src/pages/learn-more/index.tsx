@@ -35,7 +35,7 @@ const LearnMorePage = () => {
         <Typography
           component={RouterLink}
           variant="body1"
-          color="gray"
+          color="#3f51b5"
           to="/"
           paragraph
         >

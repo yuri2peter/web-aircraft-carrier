@@ -4,13 +4,15 @@ import React from 'react';
 import { use100vh } from 'react-div-100vh';
 
 // 尺寸
-const scale = 3.5;
+const scale = 4;
 const size1 = 297 * scale;
 const size2 = 210 * scale;
 
 // 背景
-const bgGradient =
-  'linear-gradient(to bottom right, #006566, #498f77, #528752)';
+// const bgGradient =
+//   'linear-gradient(to bottom right, #006566, #498f77, #528752)';
+
+const bgImage = 'url(/backgrounds/low-poly-grid-haikei.svg)';
 
 /**
  * 窗口布局
@@ -20,7 +22,7 @@ const WindowLayout: React.FC<{}> = () => {
   return (
     <Box
       sx={{
-        background: bgGradient,
+        background: bgImage,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         width: '100vw',
@@ -34,7 +36,7 @@ const WindowLayout: React.FC<{}> = () => {
       <Paper
         sx={{
           backgroundColor: '#ffffffdf',
-          backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(24px)',
           width: size1,
           height: size2,
           position: 'relative',
