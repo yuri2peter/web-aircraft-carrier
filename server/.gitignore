@@ -3,3 +3,5 @@
 /data
 .env
 /*-win32-x64
+docker/docker-compose.yml
+docker/build.sh
