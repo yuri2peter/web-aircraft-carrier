@@ -1,6 +1,5 @@
 {
   "name": "app",
-  "main": "el-entry.js",
   "type": "commonjs",
   "private": true,
   "version": "0.0.0",
@@ -16,6 +15,7 @@
     "free-port": "npx kill-port 3000"
   },
   "dependencies": {
+    "@local/common": "../common",
     "@koa/cors": "^4.0.0",
     "@yuri2/markdown-parser": "^1.0.0",
     "axios": "^1.1.2",
@@ -31,7 +31,8 @@
     "md5": "^2.3.0",
     "nanoid": "^3.3.4",
     "ora": "^6.1.2",
-    "socket.io": "^4.5.3"
+    "socket.io": "^4.5.3",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

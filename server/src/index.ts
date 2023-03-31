@@ -1,8 +1,11 @@
 import ora from 'ora';
+import { ExampleSchema } from '@local/common';
 import { startKoa } from './startKoa';
 import { startIO } from './startIO';
 import { initDb } from './db';
 import { PORT } from './configs';
+
+// ExampleSchema.parse({});
 
 async function main() {
   envTest();
