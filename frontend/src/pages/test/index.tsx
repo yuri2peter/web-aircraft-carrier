@@ -13,12 +13,7 @@ const TestPage = () => {
           <Typography variant="h3" align="center" color="black" mb={4}>
             Test Field
           </Typography>
-          <NowUploader
-            value={stateValue}
-            onChange={setStateValue}
-            simpleMode
-            textFieldProps={{ size: 'small' }}
-          />
+          <NowUploader value={stateValue} onChange={setStateValue} />
         </Box>
       </CentralBox>
       <Typography align="center" mb={4}>

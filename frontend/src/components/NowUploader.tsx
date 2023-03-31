@@ -1,3 +1,4 @@
+// Importing necessary libraries
 import { AxiosInstance } from 'axios';
 import React, { ComponentPropsWithoutRef, useCallback, useState } from 'react';
 import { SERVER_ORIGIN } from 'src/configs';
@@ -5,6 +6,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import axiosServices from 'src/utils/axios';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 
+// Defining the interface for the results obtained on upload
 export interface UploadResults {
   mimetype: string;
   newFilename: string;
@@ -12,8 +14,9 @@ export interface UploadResults {
   size: number;
 }
 
+// Interface for the component props
 interface Props {
-  simpleMode?: boolean;
+  disableAutoFill?: boolean;
   value: string;
   onChange: (v: string) => void;
   onUploadBegin?: () => void;
@@ -26,8 +29,9 @@ interface Props {
   axiosInstance?: AxiosInstance;
 }
 
+// Functional component for file uploader
 const NowUploader: React.FC<Props> = ({
-  simpleMode = false,
+  disableAutoFill = false, // Disable form auto-fill after file upload
   value,
   onChange,
   onUploadBegin = () => {},
@@ -42,18 +46,24 @@ const NowUploader: React.FC<Props> = ({
   serverOrigin = SERVER_ORIGIN,
   axiosInstance = axiosServices,
 }) => {
+  // State management
   const [loading, setLoading] = useState(false);
+
+  // Function to handle the upload process
   const handleUpload = useCallback(async () => {
     setLoading(true);
     onUploadBegin();
     try {
+      // Call the upload function
       const results = await upload(serverOrigin, axiosInstance);
       if (results) {
         onUploadSucceed(results);
-        if (simpleMode) {
+        alert(1);
+        if (!disableAutoFill) {
           onChange(serverOrigin + '/' + results.newFilename);
         }
       } else {
+        alert(2);
         onUploadCancelled();
       }
     } catch (err) {
@@ -62,7 +72,7 @@ const NowUploader: React.FC<Props> = ({
     setLoading(false);
     onUploadEnd();
   }, [
-    simpleMode,
+    disableAutoFill,
     onChange,
     onUploadBegin,
     onUploadSucceed,
@@ -72,6 +82,8 @@ const NowUploader: React.FC<Props> = ({
     serverOrigin,
     axiosInstance,
   ]);
+
+  // Return the file uploader component
   return (
     <TextField
       disabled={loading}
@@ -95,26 +107,28 @@ const NowUploader: React.FC<Props> = ({
   );
 };
 
+// Export the component as default
 export default NowUploader;
 
+// Function to handle file upload operations
 function upload(
   serverOrigin = SERVER_ORIGIN,
   axiosInstance = axiosServices
 ): Promise<UploadResults | null> {
   return new Promise((resolve, reject) => {
     let fileCancle = true;
-    // 生成一个隐藏的input框并打开
+    // Create a hidden input element and open the file picker dialog
     const elInput = document.createElement('input');
     elInput.type = 'file';
     elInput.style.display = 'none';
-    document.body.append(elInput); // 兼容IOS，必须挂载到body
-    // 监听取消动作
+    document.body.append(elInput); // For iOS compatibility, must be mounted to body
+    // Listen for cancel actions
     window.addEventListener(
       'focus',
       () => {
         setTimeout(() => {
           if (fileCancle) {
-            // 取消逻辑处理
+            // Cancel handing logic
             resolve(null);
           }
         }, 100);
@@ -127,7 +141,7 @@ function upload(
       if (file) {
         const form = new FormData();
         form.append('file', file);
-        // 发起上传
+        // Initiate the upload
         axiosInstance
           .post(serverOrigin + '/api/upload', form)
           .then(({ data }) => {
@@ -139,7 +153,6 @@ function upload(
               size,
             } as UploadResults);
           });
-        resolve(null);
       } else {
         reject('cancelled upload');
       }
