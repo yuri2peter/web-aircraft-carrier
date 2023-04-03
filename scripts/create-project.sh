@@ -1,7 +1,11 @@
+#!/bin/bash
+
+# create.sh
+
 # cd /your_project
 
 # Get codes
-curl https://github.com/yuri2peter/web-aircraft-carrier/archive/refs/heads/main.zip -o wac.zip --progress
+curl -L https://github.com/yuri2peter/web-aircraft-carrier/archive/refs/heads/main.zip -o wac.zip
 
 # Decompression
 unzip wac.zip
