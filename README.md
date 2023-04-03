@@ -18,11 +18,13 @@ See more documentations in [here](./docs/main.md).
 
 ## Quick Start
 
-First of all, initializing your project.
+First of all, create your project.
 
 ```bash
-curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/scripts/create-project.sh | bash
+curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/main/scripts/create-project.sh | bash
 ```
+
+## Development
 
 For frontend development:
 
