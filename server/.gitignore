@@ -6,3 +6,4 @@
 /dist
 docker/docker-compose.yml
 docker/build.sh
+docker/volumes

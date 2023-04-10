@@ -3,7 +3,7 @@
 ## Features
 
 - Typescript 4.9
-- ANY package type
+- ANY package type supported
 
 ## Quick Start
 
