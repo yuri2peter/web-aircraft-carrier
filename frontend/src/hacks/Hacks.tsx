@@ -2,6 +2,7 @@ import React from 'react';
 import { DialogConfirmHack } from './comfirm';
 import { NavigationHack } from './navigate';
 import { SnackbarHack } from './snackbarMessage';
+import { WorkerHack } from './worker';
 
 const Hacks: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Hacks: React.FC = () => {
       <SnackbarHack />
       <NavigationHack />
       <DialogConfirmHack />
+      <WorkerHack />
     </>
   );
 };

@@ -14,3 +14,7 @@ export const NavigationHack: React.FC = () => {
 export function navigate(to: string) {
   refHack.current(to);
 }
+
+export function navigateGoBack() {
+  refHack.current(-1);
+}
