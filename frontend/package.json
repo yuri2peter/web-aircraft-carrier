@@ -14,7 +14,6 @@
     "free-port": "npx kill-port 8000"
   },
   "dependencies": {
-    "@local/common": "../common",
     "@ant-design/icons": "^4.7.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",

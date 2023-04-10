@@ -16,7 +16,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@local/common": "../common",
     "@koa/cors": "^4.0.0",
     "@yuri2/markdown-parser": "^1.0.0",
     "axios": "^1.1.2",
