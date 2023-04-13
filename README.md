@@ -18,13 +18,39 @@ See more documentations in [here](./docs/main.md).
 
 ## Quick Start
 
-First of all, create your project.
+1. Enter your project directory.
 
 ```bash
-curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/main/scripts/create-project.sh | bash
+cd MY_DIR
+```
+
+2. Create Project
+
+For FullStack Project:
+
+```bash
+curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/main/scripts/create-project/fullstack.sh | bash
+```
+
+For Frontend Project:
+
+```bash
+curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/main/scripts/create-project/frontend.sh | bash
+```
+
+For NodeServer Project:
+
+```bash
+curl -o- https://raw.githubusercontent.com/yuri2peter/web-aircraft-carrier/main/scripts/create-project/server.sh | bash
 ```
 
 ## Development
+
+Enter scripts directory:
+
+```bash
+cd scripts
+```
 
 For frontend development:
 
@@ -38,9 +64,7 @@ For backend development:
 sh dev-server.sh
 ```
 
-> Of course you could develop frontend and backend at the same time.
-
-Compile frontend files and copy them into your server directory:
+Compile frontend files and copy them into server:
 
 ```bash
 sh build-frontend.sh
@@ -54,6 +78,6 @@ sh start.sh
 
 ## Publish & Deployment
 
-- See `./docker`
+- See `server/docker`
 - Create a protable node app with [node-app-protable](https://github.com/yuri2peter/node-app-protable)
-- Create a electron app (comnig soon...)
+- Create a protable Electron app with [electron-app-template](https://github.com/yuri2peter/electron-app-template)
