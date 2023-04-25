@@ -1,4 +1,4 @@
-FROM node:16.18
+FROM node:alpine
 ENV NODE_ENV=production
 WORKDIR /app
 COPY ./dist ./dist
