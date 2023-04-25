@@ -8,6 +8,7 @@ echo "Installing server packages..."
 cd ../server
 npm ci
 touch .env
+mkdir -p ./html/frontend
 npm i ../common
 
 echo "Installing frontend packages..."
