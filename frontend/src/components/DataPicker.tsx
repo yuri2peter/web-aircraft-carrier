@@ -2,30 +2,37 @@
 // @mui/x-date-pickers的onchange机制不同于标准input，这会导致formik机制异常。
 // 此处进行了一些处理，模拟了常规的onchange事件，并且使得数据格式统一为string。
 
-// TODO 渲染时会有一行警告：The mask "__/__/" ... 暂未解决
 import React from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { TextField, TextFieldProps } from '@mui/material';
+import dayjs, { Dayjs } from 'dayjs';
+import { StandardTextFieldProps } from '@mui/material';
 
-const PICKERS = {
-  DATE_TIME: DateTimePicker,
-  DATE: DatePicker,
+const pickers = {
+  DATE_TIME: { picker: DateTimePicker, format: 'YYYY/MM/DD HH:mm' },
+  DATE: { picker: DatePicker, format: 'YYYY/MM/DD' },
 };
 
-const MyDatePicker: React.FC<{
-  type?: keyof typeof PICKERS;
+interface Props extends Omit<StandardTextFieldProps, 'onChange'> {
+  type?: keyof typeof pickers;
   value: string;
-  onChange: (event: { type: 'change'; target: HTMLInputElement }) => void;
+  onChange: (event: any, timeString: string) => void;
   name?: string;
-  textFieldProps?: TextFieldProps;
-}> = ({ type = 'DATE', onChange, value, name, textFieldProps = {} }) => {
-  const [valueDate, setValueDate] = React.useState<Date | null>(null);
+}
+
+const MyDatePicker: React.FC<Props> = ({
+  type = 'DATE',
+  onChange,
+  value,
+  name,
+  ...props
+}) => {
+  const [valueDate, setValueDate] = React.useState<Dayjs | null>(null);
   const refInput = React.useRef<HTMLInputElement | null>(null);
   React.useEffect(() => {
     if (value) {
       try {
-        setValueDate(new Date(value));
+        setValueDate(dayjs(value));
       } catch {
         setValueDate(null);
       }
@@ -36,40 +43,32 @@ const MyDatePicker: React.FC<{
       refInput.current.value = value;
     }
   }, [value]);
-  const Picker = PICKERS[type];
+  const Picker = pickers[type].picker;
   return (
     <>
       <Picker
+        format={pickers[type].format}
         value={valueDate}
+        ampm={false}
+        slotProps={{
+          textField: props,
+        }}
         onChange={(v) => {
           setValueDate(v);
           if (refInput.current) {
-            refInput.current.value = dateToString(v as Date);
+            const s = v?.toISOString() || '';
+            refInput.current.value = s;
             const e = {
               type: 'change',
               target: refInput.current,
             };
-            onChange(e as { type: 'change'; target: HTMLInputElement });
+            onChange(e, s);
           }
         }}
-        renderInput={(params) => (
-          <TextField {...params} {...textFieldProps} name={name} />
-        )}
       />
       <input ref={refInput} hidden name={name} />
     </>
   );
 };
-
-function dateToString(date: Date) {
-  if (!date) {
-    return '';
-  }
-  try {
-    return date.toISOString();
-  } catch {
-    return '';
-  }
-}
 
 export default MyDatePicker;
