@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import zhLocale from 'dayjs/locale/zh-CN';
+import zhLocale from 'dayjs/locale/zh-cn';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear'; // 导入插件
 import relativeTime from 'dayjs/plugin/relativeTime'; // 导入插件
-import 'dayjs/locale/zh-cn'; // 导入本地化语言
 import { USE_SPA } from './configs';
 import App from './App';
 
