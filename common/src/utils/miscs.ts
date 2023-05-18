@@ -1,4 +1,3 @@
-import { FormikProps } from 'formik';
 import lodash from 'lodash';
 import { z } from 'zod';
 
@@ -44,33 +43,6 @@ runtimeIdGenerator.gen = runtimeIdGenerator();
 // 返回一个在当前浏览器实例累加的ID。
 export function generateId() {
   return runtimeIdGenerator.gen();
-}
-
-// 针对Mui的表单组件，生成formik属性。减少样板代码
-export function muiFormikPropsParser<T extends {}>(
-  formik: FormikProps<T>,
-  name: string,
-  noDefaultStyles?: boolean
-) {
-  const props = {
-    name,
-    checked: lodash.get(formik.values, name),
-    value: lodash.get(formik.values, name),
-    onChange: formik.handleChange,
-    onBlur: formik.handleBlur,
-    error:
-      lodash.get(formik.touched, name) &&
-      Boolean(lodash.get(formik.errors, name)),
-    helperText:
-      lodash.get(formik.touched, name) && lodash.get(formik.errors, name),
-  };
-  if (!noDefaultStyles) {
-    Object.assign(props, {
-      fullsize: true,
-      size: 'small',
-    });
-  }
-  return props;
 }
 
 // 获取当前时间的总秒数
