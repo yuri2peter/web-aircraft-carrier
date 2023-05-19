@@ -19,6 +19,6 @@ export const config: Config = {
   showDevInfo: true,
   showStoryboard: true,
   showBackground: true,
-  breakpoints: [520, 900],
-  windowSize: [891, 630],
+  breakpoints: [660, 1200],
+  windowSize: [1100, 760],
 };
