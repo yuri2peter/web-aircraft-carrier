@@ -2,8 +2,13 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Storyboard from './Storyboard';
+import { useNoScale } from 'src/hooks/useNoScale';
+import { useLayoutContext } from './context';
+import { config } from '../config';
 
 const FullScreenContent: React.FC = () => {
+  const { isMobile } = useLayoutContext();
+
   return (
     <Box
       sx={{
@@ -14,10 +19,16 @@ const FullScreenContent: React.FC = () => {
         backgroundColor: '#ffffff',
       }}
     >
+      {isMobile && config.enableMobileNoScaleHack && <MobileHack />}
       <Storyboard />
       <Outlet />
     </Box>
   );
+};
+
+const MobileHack: React.FC = () => {
+  useNoScale();
+  return null;
 };
 
 export default FullScreenContent;

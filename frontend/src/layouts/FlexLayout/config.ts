@@ -11,9 +11,11 @@ interface Config {
   showDevInfo: boolean; // 显示调试信息
   showStoryboard: boolean; // 显示开屏广告
   showBackground: boolean; // 显示背景图层
+  enableMobileNoScaleHack: boolean; // 是否启用移动端禁止缩放hack
 }
 
 export const config: Config = {
+  enableMobileNoScaleHack: true,
   showDevInfo: true,
   showStoryboard: true,
   showBackground: true,
