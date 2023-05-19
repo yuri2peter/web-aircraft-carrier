@@ -3,7 +3,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const FRONTEND_PORT = 1542;
+const FRONTEND_PORT = 8000;
 const SERVER_PORT = 3000;
 
 // https://vitejs.dev/config/
