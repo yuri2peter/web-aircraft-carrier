@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import zhLocale from 'dayjs/locale/zh-cn';
+import 'dayjs/locale/zh-cn';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear'; // 导入插件
@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={myTheme}>
       <CssBaseline />
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={zhLocale}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'zh-cn'}>
         <RouterProvider>
           <App />
         </RouterProvider>
