@@ -16,7 +16,6 @@ const FullScreenContent: React.FC = () => {
         height: '100%',
         overflow: 'auto',
         flexShrink: 0,
-        backgroundColor: '#ffffff',
       }}
     >
       {isMobile && config.enableMobileNoScaleHack && <MobileHack />}

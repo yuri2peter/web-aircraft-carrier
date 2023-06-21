@@ -1,11 +1,10 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Paper, Stack, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import CentralBox from 'src/components/CentralBox';
 import { config } from '../config';
 
 const debug = false;
 let visible = true;
-const textColor = '#404040';
 
 const Storyboard: React.FC = () => {
   const [show, setShow] = useState(true);
@@ -26,7 +25,7 @@ const Storyboard: React.FC = () => {
     return null;
   }
   return (
-    <Box
+    <Paper
       onClick={close}
       sx={{
         width: '100%',
@@ -35,7 +34,6 @@ const Storyboard: React.FC = () => {
         top: 0,
         left: 0,
         zIndex: 999,
-        backgroundColor: '#ffffff',
       }}
       className={
         debug
@@ -62,14 +60,13 @@ const Storyboard: React.FC = () => {
           <Box height={24}></Box>
           <Typography
             variant="h5"
-            color={textColor}
             // sx={{ textShadow: '2px 2px 4px rgb(0 0 0 / 50%)' }}
           >
             Web Aircraft Carrier
           </Typography>
         </Stack>
       </CentralBox>
-    </Box>
+    </Paper>
   );
 };
 

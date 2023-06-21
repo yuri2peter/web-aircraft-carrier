@@ -9,7 +9,6 @@ const WindowContent: React.FC = () => {
   return (
     <Paper
       sx={{
-        backgroundColor: '#ffffff',
         width,
         height,
         position: 'relative',
