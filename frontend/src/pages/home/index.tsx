@@ -7,9 +7,9 @@ const HomePage = () => {
     <Stack height={1}>
       <CentralBox flexGrow={1}>
         <Box>
-          <Typography variant="h2" align="center" color="black">
-            Web Aircraft Carrier
-          </Typography>
+          <h1 className="text-3xl font-bold  text-blue-700">
+            Web Aircraft Carrier Hello world!
+          </h1>
           <Typography variant="body1" align="center" mt={3}>
             One project for EVERYTHING you needed
           </Typography>

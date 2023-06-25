@@ -21,6 +21,7 @@ import '@fontsource/roboto/700.css';
 import 'animate.css';
 
 // custom styles
+import './index.css';
 import './styles/custom.scss';
 import './styles/animate-delay-queue.scss';
 import { enableMapSet } from 'immer';
