@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import onerror from 'koa-onerror';
 import bodyPaser from 'koa-body';
 import http from 'http';
 import path from 'path';
@@ -21,6 +22,7 @@ export function startKoa() {
 }
 
 function applyApp(app: Koa) {
+  onerror(app);
   app.use(cors());
   app.use(new CSRF());
 

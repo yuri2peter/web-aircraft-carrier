@@ -81,3 +81,16 @@ export function zodEnumFromObjKeys<K extends string>(
   const [firstKey, ...otherKeys] = Object.keys(obj) as K[];
   return z.enum([firstKey, ...otherKeys]);
 }
+
+// 服务端意外错误捕捉
+export function uncaughtErrorHandle() {
+  const handle = (e: any) => {
+    console.error(`[${new Date().toLocaleString()}] Uncaught Error:\n`, e);
+  };
+  try {
+    process.on('uncaughtException', handle);
+    process.on('unhandledRejection', handle);
+  } catch (error) {
+    handle(error);
+  }
+}
