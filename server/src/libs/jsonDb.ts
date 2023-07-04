@@ -28,7 +28,7 @@ export default class JsonDb<T> {
     file: string;
     defaultValue: T;
     version?: number;
-    versionFixer?: (value: any, oldVersion: number) => T;
+    versionFixer?: (value: unknown, oldVersion: number) => T;
     disableAutoSave?: boolean;
     autoSaveWaitMilliseconds?: number;
   }) {

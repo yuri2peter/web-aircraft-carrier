@@ -5,10 +5,9 @@ import JsonDb from './libs/jsonDb';
 const dbFile = path.resolve(ROOT_PATH, './data/db/main.json');
 
 const defaultValue = { _restartCount: 0 };
-type Data = typeof defaultValue;
 const version = 1;
 
-export const db = new JsonDb<Data>({
+export const db = new JsonDb({
   file: dbFile,
   version,
   defaultValue,
@@ -16,7 +15,7 @@ export const db = new JsonDb<Data>({
     if (oldVersion !== version) {
       return defaultValue;
     } else {
-      return value;
+      return value as typeof defaultValue;
     }
   },
 });
