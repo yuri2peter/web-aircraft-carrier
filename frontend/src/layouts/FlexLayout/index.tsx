@@ -1,11 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { use100vh } from 'react-div-100vh';
 import { useWatchSize } from './sections/useWatchSize';
 import { useResizeDetector } from 'react-resize-detector';
 import { ContextProvider } from './sections/context';
 import ParentBox from './sections/ParentBox';
-import FullScreenContent from './sections/FullScreenContent';
-import WindowContent from './sections/WindowContent';
+import ContentBox from './sections/ContentBox';
 
 /**
  * 万能弹性布局器
@@ -18,20 +17,11 @@ const FlexLayout: React.FC<{}> = () => {
     height: height || 0,
   });
   const { mode } = content;
-  const contentEl = useMemo(() => {
-    let el = null;
-    if (['MOBILE', 'DESKTOP'].includes(mode)) {
-      el = <FullScreenContent />;
-    }
-    if (['WINDOW'].includes(mode)) {
-      el = <WindowContent />;
-    }
-    return el;
-  }, [mode]);
+  const fullScreen = ['MOBILE', 'DESKTOP'].includes(mode);
   return (
     <ContextProvider value={content}>
       <ParentBox sizerRef={ref} height={height100vh || 0}>
-        {contentEl}
+        <ContentBox fullScreen={fullScreen} />
       </ParentBox>
     </ContextProvider>
   );
