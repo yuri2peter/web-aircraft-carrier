@@ -1,3 +1,7 @@
-import { Store } from './types';
+export interface Store {
+  foo: string;
+}
 
-export const defaultStore: Store = {};
+export const defaultStore: Store = {
+  foo: 'bar',
+};

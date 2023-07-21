@@ -5,8 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run build-prod && npm run run-prod",
-    "dev": "npm run build-dev && npm run run-dev",
-    "watch": "cross-env NODE_ENV=development nodemon --exec 'tsx ./src/index.ts' --config nodemon.json",
+    "dev": "cross-env NODE_ENV=development nodemon --exec 'tsx ./src/index.ts' --config nodemon.json",
     "run-dev": "cross-env NODE_ENV=development node ./dist/main.js",
     "run-prod": "cross-env NODE_ENV=production node ./dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -39,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@types/fs-extra": "^9.0.13",
     "@types/koa": "^2.13.5",
     "@types/koa__cors": "^3.3.0",
