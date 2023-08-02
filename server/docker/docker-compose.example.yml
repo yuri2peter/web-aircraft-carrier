@@ -2,14 +2,16 @@
 version: '3.8'
 services:
   myapp:
-    image: "myapp:v1"
+    container_name: myapp
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
     restart: unless-stopped
     volumes:
       - ./volumes/data:/app/data
       - ./volumes/resources:/app/html/resources
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
 # networks:
 #   default:
-#     external:
-#       name: main
+#     name: main
