@@ -81,7 +81,7 @@ export default class JsonDb<T> {
   private loadFile(versionFixer?: (value: any, oldVersion: number) => T) {
     try {
       const content = fs.readFileSync(this.file, 'utf8');
-      const { data, version } = JSON.parse(content);
+      const { data, version } = JSON.parse(content) as any;
       // trying fix version
       this.data =
         versionFixer && version !== this.version
