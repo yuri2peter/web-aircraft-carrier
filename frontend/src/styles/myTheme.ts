@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { Zoom, createTheme } from '@mui/material';
 
 export const myTheme = createTheme({
   palette: {
@@ -16,6 +16,11 @@ export const myTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      defaultProps: {
+        size: 'small',
+      },
+    },
     MuiIconButton: {
       defaultProps: {
         size: 'small',
@@ -25,6 +30,17 @@ export const myTheme = createTheme({
       defaultProps: {
         arrow: true,
         placement: 'top',
+        TransitionComponent: Zoom,
+        enterDelay: 500,
+        disableInteractive: true,
+      },
+      styleOverrides: {
+        tooltip: {
+          background: 'black',
+        },
+        arrow: {
+          color: 'black',
+        },
       },
     },
   },
