@@ -18,6 +18,8 @@
     "@koa/cors": "^4.0.0",
     "@yuri2/markdown-parser": "^1.0.0",
     "axios": "^1.1.2",
+    "croner": "^6.0.7",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.0.3",
     "fs-extra": "^10.1.0",
     "immer": "^9.0.17",
