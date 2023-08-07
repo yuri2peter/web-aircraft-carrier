@@ -28,8 +28,9 @@ function applyApp(app: Koa) {
 
   const htmlFrontendPath = path.join(ROOT_PATH, 'html/frontend');
   const htmlResourcesPath = path.join(ROOT_PATH, 'html/resources');
+  const htmlResourcesUploadsPath = path.join(htmlResourcesPath, 'uploads');
   fs.ensureDirSync(htmlFrontendPath);
-  fs.ensureDirSync(htmlResourcesPath);
+  fs.ensureDirSync(htmlResourcesUploadsPath);
 
   if (USE_SPA) {
     app.use(koaPushState(htmlFrontendPath + '/index.html'));
@@ -55,7 +56,7 @@ function applyApp(app: Koa) {
       jsonLimit: '100mb',
       multipart: true,
       formidable: {
-        uploadDir: ROOT_PATH + '/html/resources',
+        uploadDir: htmlResourcesUploadsPath,
         maxFileSize: MAX_FILE_SIZE * 1024 * 1024, // 100MB
         multiples: false,
         onFileBegin: (name, file) => {
@@ -66,7 +67,7 @@ function applyApp(app: Koa) {
           const newFilename =
             path.basename(fileName, ext) + '.' + nanoid() + ext;
           file.newFilename = newFilename;
-          file.filepath = ROOT_PATH + '/html/resources/' + newFilename;
+          file.filepath = path.join(htmlResourcesUploadsPath, newFilename);
         },
       },
     })
