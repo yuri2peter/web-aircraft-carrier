@@ -9,9 +9,16 @@ import CSRF from 'koa-csrf';
 import koaPushState from 'koa-push';
 import staticServer from 'koa-static';
 import cors from '@koa/cors';
-import { MAX_FILE_SIZE, ROOT_PATH } from './configs';
+import {
+  MAX_FILE_SIZE,
+  htmlFrontendPath,
+  htmlResourcesPath,
+  htmlResourcesUploadsPath,
+} from './configs';
 import { main as controller } from './controllers/index';
 import { nanoid } from 'nanoid';
+import authApiRateLimit from './middlewares/authApiRateLimit';
+import allApiRateLimit from './middlewares/allApiRateLimit';
 
 const USE_SPA = true;
 
@@ -26,9 +33,6 @@ function applyApp(app: Koa) {
   app.use(cors());
   app.use(new CSRF());
 
-  const htmlFrontendPath = path.join(ROOT_PATH, 'html/frontend');
-  const htmlResourcesPath = path.join(ROOT_PATH, 'html/resources');
-  const htmlResourcesUploadsPath = path.join(htmlResourcesPath, 'uploads');
   fs.ensureDirSync(htmlFrontendPath);
   fs.ensureDirSync(htmlResourcesUploadsPath);
 
@@ -57,7 +61,7 @@ function applyApp(app: Koa) {
       multipart: true,
       formidable: {
         uploadDir: htmlResourcesUploadsPath,
-        maxFileSize: MAX_FILE_SIZE * 1024 * 1024, // 100MB
+        maxFileSize: MAX_FILE_SIZE * 1024 * 1024, // MAX_FILE_SIZE MB
         multiples: false,
         onFileBegin: (name, file) => {
           const { originalFilename } = file;
@@ -72,6 +76,10 @@ function applyApp(app: Koa) {
       },
     })
   );
+
+  // 权限验证中间件
+  app.use(allApiRateLimit);
+  app.use(authApiRateLimit);
 
   // 路由
   const router = new Router();

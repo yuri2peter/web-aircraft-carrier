@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import md5 from 'md5';
 import { z } from 'zod';
 
 // 连字符转驼峰
@@ -93,4 +93,29 @@ export function uncaughtErrorHandle() {
   } catch (error) {
     handle(error);
   }
+}
+
+// 获取随机字符串，可指定长度
+export function getRandomString(length = 8) {
+  return md5(Math.random().toString(36)).substring(0, length);
+}
+
+// 检查字符串是否是以某些字符开头,支持传入除外列表
+// 如 startsWith('abc', ['a']) === true
+// 但是 startsWith('abc', ['a'], ['ab']) === false
+export function startsWith(
+  str: string,
+  checkList: string[],
+  excludeList: string[] = []
+) {
+  const inList = (list: string[]) => {
+    return list.some((item) => {
+      return str.startsWith(item);
+    });
+  };
+  return inList(checkList) && !inList(excludeList);
+}
+
+export function log(message: string) {
+  console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
 }

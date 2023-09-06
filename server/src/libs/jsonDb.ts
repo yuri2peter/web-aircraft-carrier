@@ -17,7 +17,22 @@ const backupPlanSchema = z.object({
   maxBackups: z.number().int().min(1), // 备份文件最大数量
   cronExp: z.string(), // 定时任务 cron 描述。如 "0 23 * * *" 表示每天23:00执行；"*/30 * * * *" 表示每隔30分钟执行一次。
 });
+// 备份计划
 type BackupPlan = z.infer<typeof backupPlanSchema>;
+
+// 版本修复器, 开发者可以在此处检查导入的record是否是最新版本, 如果不是,可以用changeData对其版本进行修复升级
+type DataVersionFixer<T = unknown> = (
+  record: Record<T>,
+  changeData: (recipe: (base: T) => void) => void
+) => void;
+
+// 数据记录
+interface Record<T> {
+  data: Immutable<T>;
+  version: number;
+  updatedAtString: string;
+  updatedAtTime: number;
+}
 
 export default class JsonDb<T> {
   readonly file: string = '';
@@ -25,31 +40,23 @@ export default class JsonDb<T> {
   readonly debug: boolean = false;
   private data: Immutable<T>;
   private autoSaveFile: () => void = () => {};
+  private versionFixer: DataVersionFixer = () => {};
 
-  /**
-   *
-   * @param file db file path
-   * @param defaultValue default value when file is not available
-   * @param version db schema version
-   * @param versionFixer use this to update your data schema
-   * @param disableAutoSave disable auto save feature
-   * @param autoSaveWaitMilliseconds throttle delay for auto-saving file
-   */
   constructor(params: {
     file: string; // 数据文件
     defaultValue: T; // 默认值
     version?: number; // 版本号
-    versionFixer?: (value: unknown, oldVersion: number) => T; // 版本修复器
+    versionFixer?: DataVersionFixer; // 版本修复器
     disableAutoSave?: boolean; // 是否禁用自动保存
     autoSaveWaitMilliseconds?: number; // 自动保存延迟
-    backup?: BackupPlan;
-    debug?: boolean;
+    backup?: BackupPlan; // 备份计划
+    debug?: boolean; // 是否开启调试
   }) {
     const {
       file,
       defaultValue,
       version = 1,
-      versionFixer,
+      versionFixer = () => {},
       disableAutoSave = false,
       autoSaveWaitMilliseconds = 8000,
       backup,
@@ -64,21 +71,15 @@ export default class JsonDb<T> {
         this.saveFile();
       }, autoSaveWaitMilliseconds);
     }
-    this.loadFile(versionFixer);
+    this.versionFixer = versionFixer;
+    this.loadFile();
     this.startBackupPlan(backup);
   }
 
-  /**
-   * get newest data
-   */
   getData() {
     return this.data;
   }
 
-  /**
-   * set data
-   * @param data
-   */
   setData(data: T) {
     this.data = data as Immutable<T>;
     this.autoSaveFile();
@@ -95,15 +96,11 @@ export default class JsonDb<T> {
     this.autoSaveFile();
   }
 
-  private loadFile(versionFixer?: (value: any, oldVersion: number) => T) {
+  private loadFile(file?: string) {
     try {
-      const content = fs.readFileSync(this.file, 'utf8');
-      const { data, version } = JSON.parse(content) as any;
-      // trying fix version
-      this.data =
-        versionFixer && version !== this.version
-          ? versionFixer(data, version)
-          : data;
+      const content = fs.readFileSync(file || this.file, 'utf8');
+      const record = JSON.parse(content) as Record<unknown>;
+      this.importRecord(record);
     } catch (error) {
       console.log('[jsonDb] Error parsing db file, use default value.');
     }
@@ -130,16 +127,7 @@ export default class JsonDb<T> {
 
         // 写入文件
         const filePath = path.join(dir, `${timeStr}.json`);
-        fs.ensureFileSync(filePath);
-        fs.writeFileSync(
-          filePath,
-          JSON.stringify({
-            data: this.data,
-            version: this.version,
-            updatedAtString: new Date().toString(),
-            updatedAtTime: new Date().getTime(),
-          })
-        );
+        this.saveFile(filePath);
 
         // 删除超限的备份
         fs.ensureDirSync(dir);
@@ -174,16 +162,54 @@ export default class JsonDb<T> {
     );
   }
 
-  saveFile() {
-    fs.ensureFileSync(this.file);
-    fs.writeFileSync(
-      this.file,
-      JSON.stringify({
-        data: this.data,
-        version: this.version,
-        updatedAtString: new Date().toString(),
-        updatedAtTime: new Date().getTime(),
-      })
-    );
+  saveFile(file?: string) {
+    const filePath = file || this.file;
+    fs.ensureFileSync(filePath);
+    fs.writeFileSync(filePath, JSON.stringify(this.exportRecord(), null, 2));
+  }
+
+  importRecord(record: Record<unknown>) {
+    this.data = record.data as Immutable<T>;
+    this.versionFixer(record, (recipe) => {
+      this.data = produce((d) => {
+        recipe(d);
+      })(record.data);
+    });
+  }
+
+  exportRecord(): Record<unknown> {
+    return {
+      version: this.version,
+      updatedAtString: new Date().toString(),
+      updatedAtTime: new Date().getTime(),
+      data: this.data,
+    };
+  }
+
+  showHelp() {
+    console.log(`
+=====EXAMPLE=====
+
+import path from 'path';
+import JsonDb from './libs/jsonDb';
+
+const dbFile = path.resolve('./data/db/main.json');
+const dbBackUpDir = path.resolve('./data/db/main_backup');
+
+export const db = new JsonDb({
+  file: dbFile,
+  backup: {
+    dir: dbBackUpDir,
+    cronExp: '*/30 * * * *',
+    maxBackups: 150,
+  },
+  version: 1,
+  defaultValue: { hello: 'world' },
+  debug: true,
+  versionFixer: () => {},
+});
+
+=================
+  `);
   }
 }

@@ -6,8 +6,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/zh-cn';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
-import isLeapYear from 'dayjs/plugin/isLeapYear'; // 导入插件
-import relativeTime from 'dayjs/plugin/relativeTime'; // 导入插件
+import isLeapYear from 'dayjs/plugin/isLeapYear';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { USE_SPA } from './configs';
 import App from './App';
 
