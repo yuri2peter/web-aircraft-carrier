@@ -1,6 +1,7 @@
 import path from 'path';
 import { ROOT_PATH } from './configs';
 import JsonDb from './libs/jsonDb';
+import { fixer } from './dbVersionFixer';
 
 const dbFile = path.resolve(ROOT_PATH, './data/db/main.json');
 const dbBackUpDir = path.resolve(ROOT_PATH, './data/db/main_backup');
@@ -25,24 +26,6 @@ export const db = new JsonDb({
     }
   },
 });
-
-function fixer(
-  version: number,
-  changeData: (recipe: (base: unknown) => void) => void
-) {
-  if (version === 1) {
-    changeData(v1ToV2);
-    return fixer(2, changeData);
-  }
-  if (version === 2) {
-    changeData(v2ToV3);
-    return fixer(3, changeData);
-  }
-}
-
-function v1ToV2(data: any) {}
-
-function v2ToV3(data: any) {}
 
 // 初始化使对数据库进行的操作
 export async function initDb() {

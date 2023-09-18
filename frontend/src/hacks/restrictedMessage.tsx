@@ -15,8 +15,6 @@ import {
 } from '@mui/material';
 import { CloseOutlined } from '@ant-design/icons';
 import { useImmer } from 'src/hooks/useImmer';
-import { glassStyle } from 'src/styles/utils';
-import { lang } from 'src/components/app/utils';
 
 interface Params {
   open?: boolean;
@@ -98,7 +96,7 @@ const PromptDialog: React.FC<DialogProps> = ({
       onClose={onCancle}
       fullWidth
       maxWidth="xs"
-      sx={{ '& .MuiDialog-paper': { p: 0, ...(glassStyle(0.2) as any) } }}
+      sx={{ '& .MuiDialog-paper': { p: 0 } }}
     >
       <Box sx={{ p: 1, py: 1.5 }}>
         <Grid
@@ -127,7 +125,7 @@ const PromptDialog: React.FC<DialogProps> = ({
             }}
             autoFocus
           >
-            {lang('确定', 'OK')}
+            确定
           </Button>
         </DialogActions>
       </Box>
