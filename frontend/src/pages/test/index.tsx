@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography, Stack } from '@mui/material';
-import CentralBox from 'src/components/CentralBox';
-import NowUploader from 'src/components/NowUploader';
+import CentralBox from 'src/components/miscs/CentralBox';
+import NowUploader from 'src/components/miscs/NowUploader';
 
 const TestPage = () => {
   const [stateValue, setStateValue] = useState('');

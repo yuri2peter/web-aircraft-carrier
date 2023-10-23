@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Stack, Typography } from '@mui/material';
-import CentralBox from 'src/components/CentralBox';
+import CentralBox from 'src/components/miscs/CentralBox';
 
 const HomePage = () => {
   return (

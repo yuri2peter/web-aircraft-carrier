@@ -46,7 +46,8 @@
     "socket.io-client": "^4.5.4",
     "use-screen-orientation": "^1.1.5",
     "yup": "^0.32.11",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "^0.4.2",

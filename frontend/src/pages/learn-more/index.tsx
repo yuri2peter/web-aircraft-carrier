@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography, Link, Stack } from '@mui/material';
-import CentralBox from 'src/components/CentralBox';
+import CentralBox from 'src/components/miscs/CentralBox';
 
 const LearnMorePage = () => {
   return (
