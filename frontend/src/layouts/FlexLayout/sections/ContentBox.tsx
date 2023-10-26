@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper } from '@mui/material';
+import { Card } from '@mui/material';
 import { useLayoutContext } from './context';
 import Storyboard from './Storyboard';
 import { Outlet } from 'react-router-dom';
@@ -11,7 +11,7 @@ const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
 }) => {
   const { width, height, isMobile } = useLayoutContext();
   return (
-    <Paper
+    <Card
       sx={
         fullScreen
           ? {
@@ -19,7 +19,6 @@ const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
               height: '100%',
               overflow: 'auto',
               flexShrink: 0,
-              background: 'white',
             }
           : {
               width,
@@ -34,7 +33,7 @@ const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
       {isMobile && config.enableMobileNoScaleHack && <MobileHack />}
       <Storyboard />
       <Outlet />
-    </Paper>
+    </Card>
   );
 };
 
