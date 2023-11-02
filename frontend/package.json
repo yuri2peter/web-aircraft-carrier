@@ -29,6 +29,7 @@
     "date-fns": "^2.29.1",
     "dayjs": "^1.11.7",
     "events": "^3.3.0",
+    "file-saver": "^2.0.5",
     "formik": "^2.2.9",
     "immer": "^9.0.17",
     "lodash": "^4.17.21",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "^0.4.2",
+    "@types/file-saver": "^2.0.6",
     "@types/node": "^14.11.2",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
