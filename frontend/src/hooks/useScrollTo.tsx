@@ -15,6 +15,7 @@ export function useScrollTo() {
         block: 'nearest',
         inline: 'start',
       });
+      markRef.current = '';
     }
   });
   return returnRef.current;

@@ -32,7 +32,7 @@ const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
     >
       {isMobile && config.enableMobileNoScaleHack && <MobileHack />}
       <Storyboard />
-      <Outlet />
+      {width && height && <Outlet />}
     </Card>
   );
 };

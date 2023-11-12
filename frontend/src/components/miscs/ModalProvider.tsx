@@ -1,4 +1,15 @@
 // 模态框，内部管理状态
+/*
+<ModalProvider
+  title={'modal title'}
+  ctrlRenderer={({ handleOpen, handleClose, open }) => (
+    <Button>open</Button>
+  )}
+  contentRenderer={({ handleClose, refClosedCallback }) => (
+    <Box>content</Box>
+  )}
+/>
+*/
 import { Breakpoint } from '@mui/material';
 import * as React from 'react';
 import { useState, useCallback, useRef } from 'react';

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-// 不允许手机网页缩放，可能会导致一些手势功能异常
+// 不允许手机网页缩放，可能会导致一些手势功能异常(在某些安卓浏览器无效)
 export function useNoScale() {
   useEffect(() => {
     // 阻止双击放大

@@ -21,7 +21,7 @@ const FlexLayout: React.FC<{}> = () => {
   return (
     <ContextProvider value={content}>
       <ParentBox sizerRef={ref} height={height100vh || 0}>
-        <ContentBox fullScreen={fullScreen} />
+        {height100vh && <ContentBox fullScreen={fullScreen} />}
       </ParentBox>
     </ContextProvider>
   );
