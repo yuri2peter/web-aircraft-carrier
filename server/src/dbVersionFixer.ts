@@ -6,11 +6,11 @@ export function fixer(
 ) {
   if (version === 1) {
     changeData(v1ToV2);
-    return fixer(2, changeData);
+    fixer(2, changeData);
   }
   // if (version === 2) {
   //   changeData(v2ToV3);
-  //   return fixer(3, changeData);
+  //   fixer(3, changeData);
   // }
 }
 

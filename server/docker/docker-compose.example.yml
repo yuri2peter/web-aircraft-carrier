@@ -8,8 +8,8 @@ services:
       dockerfile: ./docker/Dockerfile
     restart: unless-stopped
     volumes:
-      - ./volumes/data:/app/data
-      - ./volumes/resources:/app/html/resources
+      - ./volumes/uploads:/app/html/resources/uploads
+      - ./volumes/db:/app/data/db
     # ports:
     #   - 3000:3000
 # networks:
