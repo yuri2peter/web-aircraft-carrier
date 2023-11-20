@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react';
 
+const USE_PWA = false;
 const FRONTEND_PORT = 8000;
 const SERVER_PORT = 3000;
 
@@ -11,35 +12,37 @@ const SERVER_PORT = 3000;
 export default defineConfig({
   plugins: [
     react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-      },
-      minify: false,
-      workbox: {
-        // 缓存全部文件，而不是仅js, css, html
-        globPatterns: ['**/*'],
-      },
-      // manifest内容配置
-      manifest: {
-        short_name: 'Web Aircraft Carrier',
-        name: 'Web Aircraft Carriere',
-        icons: [
-          {
-            src: '/logos/512.png',
-            type: 'image/png',
-            sizes: '512x512',
+    USE_PWA
+      ? VitePWA({
+          registerType: 'autoUpdate',
+          devOptions: {
+            enabled: true,
           },
-        ],
-        start_url: '/',
-        background_color: '#f6f5f4',
-        display: 'standalone',
-        scope: '/',
-        theme_color: '#f6f5f4',
-        description: '',
-      },
-    }),
+          minify: false,
+          workbox: {
+            // 缓存全部文件，而不是仅js, css, html
+            globPatterns: ['**/*'],
+          },
+          // manifest内容配置
+          manifest: {
+            short_name: 'Web Aircraft Carrier',
+            name: 'Web Aircraft Carriere',
+            icons: [
+              {
+                src: '/logos/512.png',
+                type: 'image/png',
+                sizes: '512x512',
+              },
+            ],
+            start_url: '/',
+            background_color: '#f6f5f4',
+            display: 'standalone',
+            scope: '/',
+            theme_color: '#f6f5f4',
+            description: '',
+          },
+        })
+      : null,
   ],
   envPrefix: 'FRONTEND_', // 以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中
   resolve: {

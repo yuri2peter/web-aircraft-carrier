@@ -1,15 +1,14 @@
-import { useEffect, useRef } from 'react';
+// 窗口可视性变化时触发（如tab切换）
+import { useEffect } from 'react';
 
 export function useVisibilityChange(cb: (visible: boolean) => void) {
-  const refCb = useRef(cb);
-  refCb.current = cb;
   useEffect(() => {
     const handle = () => {
-      refCb.current(!document.hidden);
+      cb(!document.hidden);
     };
     document.addEventListener('visibilitychange', handle);
     return () => {
       document.removeEventListener('visibilitychange', handle);
     };
-  }, []);
+  }, [cb]);
 }
