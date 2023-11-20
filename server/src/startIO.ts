@@ -1,5 +1,7 @@
 import http from 'http';
 import { Server, Socket } from 'socket.io';
+import { z } from 'zod';
+import debugLog from './utils/miscs';
 
 interface Client {
   socket: Socket;
@@ -26,16 +28,30 @@ export function startIO(server: http.Server) {
       },
     };
     clientSet.add(client);
-    socket.on('session', (sessionId: string) => {
+    socket.on('session', (data) => {
+      const { sessionId } = z
+        .object({
+          sessionId: z.string(),
+        })
+        .parse(data);
       client.data.sessionId = sessionId;
-      console.log(`[socket] Session ${sessionId} identified.`);
+      debugLog(`[socket] Session [${sessionId}] identified.`);
     });
-    socket.on('login', (userId: string) => {
+    socket.on('login', (data) => {
+      const { userId } = z
+        .object({
+          userId: z.string(),
+        })
+        .parse(data);
       client.data.userId = userId;
-      console.log(`[socket] User ${userId} logged in.`);
+      debugLog(`[socket] User [${userId}] logged in.`);
     });
     socket.on('disconnect', () => {
       clientSet.delete(client);
+      const { socketId, userId, sessionId } = client.data;
+      debugLog(
+        `[socket] Client [${userId || sessionId || socketId}] disconnected.`
+      );
     });
   });
 }

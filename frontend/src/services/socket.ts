@@ -5,7 +5,6 @@ import debugLog from 'src/utils/debugLog';
 
 const userId = 'guest';
 const sessionId = nanoid();
-
 export const socket = io(SERVER_ORIGIN, {
   reconnectionAttempts: USE_SOCKET ? Infinity : 1,
 });

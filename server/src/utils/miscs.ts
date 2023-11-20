@@ -1,5 +1,6 @@
 import md5 from 'md5';
 import { z } from 'zod';
+import { IS_PROD } from '../configs';
 
 // 连字符转驼峰
 export function hyphen2Camel(str: string) {
@@ -118,4 +119,10 @@ export function startsWith(
 
 export function log(message: string) {
   console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
+}
+
+export default function debugLog(message: string) {
+  if (!IS_PROD) {
+    log(message);
+  }
 }

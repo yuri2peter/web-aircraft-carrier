@@ -5,7 +5,7 @@ import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/zh-cn';
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -39,7 +39,7 @@ const RouterProvider = USE_SPA ? BrowserRouter : HashRouter;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ScopedCssBaseline>
+    <CssBaseline>
       <ThemeProvider theme={myTheme}>
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
@@ -50,6 +50,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           </RouterProvider>
         </LocalizationProvider>
       </ThemeProvider>
-    </ScopedCssBaseline>
+    </CssBaseline>
   </React.StrictMode>
 );
