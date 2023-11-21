@@ -1,14 +1,14 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import Background from './Background';
-import { useLayoutContext } from './context';
+import { selectLayout, useFlexLayout } from '../useFlexLayout';
 
 const ParentBox: React.FC<{
   sizerRef: any;
   height: number;
   children: React.ReactNode;
 }> = ({ sizerRef, height, children }) => {
-  const { mode } = useLayoutContext();
+  const { isReady } = useFlexLayout(selectLayout);
   return (
     <Box
       ref={sizerRef}
@@ -21,7 +21,7 @@ const ParentBox: React.FC<{
         overflow: 'hidden',
       }}
     >
-      {mode !== 'INIT' && <Background />}
+      {isReady && <Background />}
       {children}
     </Box>
   );

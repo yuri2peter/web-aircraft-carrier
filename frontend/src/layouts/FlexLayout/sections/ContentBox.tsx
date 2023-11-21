@@ -1,19 +1,17 @@
 import React from 'react';
 import { Card } from '@mui/material';
-import { useLayoutContext } from './context';
 import Storyboard from './Storyboard';
 import { Outlet } from 'react-router-dom';
 import { config } from '../config';
 import { useNoScale } from 'src/hooks/useNoScale';
+import { selectLayout, useFlexLayout } from '../useFlexLayout';
 
-const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
-  fullScreen = true,
-}) => {
-  const { width, height, isMobile } = useLayoutContext();
+const ContentBox: React.FC = () => {
+  const { isFullScreen, isMobile } = useFlexLayout(selectLayout);
   return (
     <Card
       sx={
-        fullScreen
+        isFullScreen
           ? {
               width: '100%',
               height: '100%',
@@ -21,18 +19,18 @@ const ContentBox: React.FC<{ fullScreen?: boolean }> = ({
               flexShrink: 0,
             }
           : {
-              width,
-              height,
+              width: config.windowSize[0],
+              height: config.windowSize[1],
               position: 'relative',
               overflow: 'hidden',
             }
       }
-      square={fullScreen}
-      elevation={fullScreen ? 0 : 16}
+      square={isFullScreen}
+      elevation={isFullScreen ? 0 : 16}
     >
-      {isMobile && config.enableMobileNoScaleHack && <MobileHack />}
+      {isMobile && config.enableMobileHack && <MobileHack />}
       <Storyboard />
-      {width && height && <Outlet />}
+      <Outlet />
     </Card>
   );
 };
