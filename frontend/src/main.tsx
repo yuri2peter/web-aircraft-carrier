@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
-import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/zh-cn';
@@ -9,6 +8,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import duration from 'dayjs/plugin/duration';
 import { USE_SPA } from './configs';
 import App from './App';
 
@@ -29,6 +29,7 @@ import { enableMapSet } from 'immer';
 import { myTheme } from './styles/myTheme';
 
 dayjs.extend(relativeTime);
+dayjs.extend(duration);
 dayjs.extend(isLeapYear); // 使用插件
 dayjs.locale('zh-cn'); // 使用本地化语言
 

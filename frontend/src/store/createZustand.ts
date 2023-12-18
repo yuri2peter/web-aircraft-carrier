@@ -1,5 +1,5 @@
 import { StateCreator, create } from 'zustand';
-import { combine, persist } from 'zustand/middleware';
+import { combine, persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 export function createZustandStore<T extends object, U extends object>(
@@ -7,7 +7,7 @@ export function createZustandStore<T extends object, U extends object>(
   b: StateCreator<T, [['zustand/immer', never]], [], U>,
   persistName = ''
 ) {
-  const creator = immer(combine(a, b));
+  const creator = subscribeWithSelector(immer(combine(a, b)));
   if (persistName) {
     return create(
       persist(creator, {
