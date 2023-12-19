@@ -6,8 +6,9 @@ echo "1) base app"
 echo "2) electron app (win64)"
 echo "3) portable node (win64)"
 echo "4) docker image"
+echo "5) wac.zip (web-aircraft-carrier)"
 echo "==========================="
-echo "Input build type (1 ~ 4):"
+echo "Input build type (1 ~ 5):"
 read input
 
 case $input in
@@ -25,6 +26,10 @@ case $input in
       ;;
     4)
       cd ./docker
+      sh build.sh
+      ;;
+    5)
+      cd ./wac
       sh build.sh
       ;;
     *)
