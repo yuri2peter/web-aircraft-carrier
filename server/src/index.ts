@@ -1,9 +1,10 @@
 import openBrowsers from 'open-browsers';
 import { startKoa } from './startKoa';
 import { startIO } from './startIO';
+import { startChii } from './startChii';
 // import { initDb } from './db';
-import { OPEN_BROWSER, PORT } from './configs';
-import { USE_SOCKET } from '@local/common/configs';
+import { OPEN_BROWSER, PORT, IS_DEV } from './configs';
+import { USE_SOCKET, CHII_PORT } from '@local/common/configs';
 import { uncaughtErrorHandle } from './utils/miscs';
 
 uncaughtErrorHandle();
@@ -12,6 +13,7 @@ export async function startServer(): Promise<number> {
   // await initDb();
   const server = startKoa();
   USE_SOCKET && startIO(server);
+  IS_DEV && CHII_PORT && startChii(CHII_PORT);
   return new Promise((resolve, reject) => {
     server.once('error', (error) => {
       reject(error);

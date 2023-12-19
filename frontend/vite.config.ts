@@ -8,6 +8,7 @@ import {
   USE_PWA,
   DEV_FRONTEND_PORT,
   DEV_SERVER_PORT,
+  CHII_PORT,
 } from '@local/common/configs';
 
 // https://vitejs.dev/config/
@@ -67,6 +68,11 @@ export default defineConfig({
       // socket推送
       '/socket.io': {
         target: `ws://127.0.0.1:${DEV_SERVER_PORT}`,
+        ws: true,
+      },
+      // chii
+      '/chii': {
+        target: `http://127.0.0.1:${CHII_PORT}`,
         ws: true,
       },
     },

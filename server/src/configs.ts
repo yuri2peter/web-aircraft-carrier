@@ -33,6 +33,7 @@ const parseEnvValue = (envName: string, defaultValue: any) => {
 
 // configs
 export const IS_PROD = process.env.NODE_ENV === 'production';
+export const IS_DEV = !IS_PROD;
 export const PORT = Number(parseEnvValue('PORT', DEV_SERVER_PORT));
 process.env.PORT = String(PORT);
 export const MAX_UPLOAD_FILE_SIZE = Number(

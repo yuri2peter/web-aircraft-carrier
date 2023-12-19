@@ -1,4 +1,4 @@
-import { USE_SPA } from '@local/common/configs';
+import { USE_SPA, CHII_PORT } from '@local/common/configs';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
@@ -11,6 +11,7 @@ import isLeapYear from 'dayjs/plugin/isLeapYear';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
 import App from './App';
+import { IS_DEV } from './configs';
 
 // mui字体
 import '@fontsource/roboto/300.css';
@@ -27,6 +28,7 @@ import './styles/custom.scss';
 import './styles/animate-delay-queue.scss';
 import { enableMapSet } from 'immer';
 import { myTheme } from './styles/myTheme';
+import { enableChii } from './services/chii';
 
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
@@ -37,6 +39,11 @@ enableMapSet(); // immer跟踪set
 
 // 启用BrowserRouter or HashRouter
 const RouterProvider = USE_SPA ? BrowserRouter : HashRouter;
+
+// chii
+if (IS_DEV && CHII_PORT) {
+  enableChii();
+}
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
