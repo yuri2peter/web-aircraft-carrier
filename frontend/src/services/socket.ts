@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { io } from 'socket.io-client';
-import { SERVER_ORIGIN, USE_SOCKET } from 'src/configs';
+import { USE_SOCKET } from '@local/common/configs';
+import { SERVER_ORIGIN } from 'src/configs';
 import debugLog from 'src/utils/debugLog';
 
 const userId = 'guest';

@@ -3,10 +3,12 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react';
-
-const USE_PWA = false;
-const FRONTEND_PORT = 8000;
-const SERVER_PORT = 3000;
+import {
+  APP_NAME,
+  USE_PWA,
+  DEV_FRONTEND_PORT,
+  DEV_SERVER_PORT,
+} from '@local/common/configs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,8 +27,8 @@ export default defineConfig({
           },
           // manifest内容配置
           manifest: {
-            short_name: 'Web Aircraft Carrier',
-            name: 'Web Aircraft Carriere',
+            short_name: APP_NAME,
+            name: APP_NAME,
             icons: [
               {
                 src: '/logos/512.png',
@@ -54,23 +56,23 @@ export default defineConfig({
     'process.env': {}, // 一些包需要此全局变量
   },
   server: {
-    port: FRONTEND_PORT, // 开发服务器端口
+    port: DEV_FRONTEND_PORT, // 开发服务器端口
     host: true, // 监听所有地址，包括局域网和公网地址
     strictPort: true, // 端口被占用时，抛出错误
     proxy: {
       // API请求代理
       '/api': {
-        target: `http://127.0.0.1:${SERVER_PORT}`,
+        target: `http://127.0.0.1:${DEV_SERVER_PORT}`,
       },
       // socket推送
       '/socket.io': {
-        target: `ws://127.0.0.1:${SERVER_PORT}`,
+        target: `ws://127.0.0.1:${DEV_SERVER_PORT}`,
         ws: true,
       },
     },
   },
   preview: {
-    port: FRONTEND_PORT, // 预览服务器端口
+    port: DEV_FRONTEND_PORT, // 预览服务器端口
     host: true, // 监听所有地址，包括局域网和公网地址
     strictPort: true, // 端口被占用时，抛出错误
   },

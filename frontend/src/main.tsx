@@ -1,3 +1,4 @@
+import { USE_SPA } from '@local/common/configs';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
@@ -9,7 +10,6 @@ import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
-import { USE_SPA } from './configs';
 import App from './App';
 
 // mui字体

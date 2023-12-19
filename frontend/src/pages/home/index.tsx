@@ -1,3 +1,4 @@
+import { APP_NAME } from '@local/common/configs';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Stack, Typography } from '@mui/material';
 import CentralBox from 'src/components/miscs/CentralBox';
@@ -7,9 +8,7 @@ const HomePage = () => {
     <Stack height={1}>
       <CentralBox flexGrow={1}>
         <Box>
-          <h1 className="text-3xl font-bold  text-blue-700">
-            Web Aircraft Carrier Hello world!
-          </h1>
+          <h1 className="text-3xl font-bold  text-blue-700">{APP_NAME}</h1>
           <Typography variant="body1" align="center" mt={3}>
             One project for EVERYTHING you needed
           </Typography>

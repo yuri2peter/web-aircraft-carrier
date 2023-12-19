@@ -11,5 +11,5 @@
     "allowSyntheticDefaultImports": true,
     "allowJs": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "config.ts"]
 }

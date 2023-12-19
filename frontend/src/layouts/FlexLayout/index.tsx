@@ -1,5 +1,7 @@
+import { APP_NAME } from '@local/common/configs';
 import React, { useEffect } from 'react';
 import { use100vh } from 'react-div-100vh';
+import { Helmet } from 'react-helmet';
 import { useResizeDetector } from 'react-resize-detector';
 import ParentBox from './sections/ParentBox';
 import ContentBox from './sections/ContentBox';
@@ -22,9 +24,14 @@ const FlexLayout: React.FC<{}> = () => {
     });
   }, [setSizeDebounced, width, height]);
   return (
-    <ParentBox sizerRef={ref} height={height100vh}>
-      {isReady && <ContentBox />}
-    </ParentBox>
+    <>
+      <Helmet>
+        <title>{APP_NAME}</title>
+      </Helmet>
+      <ParentBox sizerRef={ref} height={height100vh}>
+        {isReady && <ContentBox />}
+      </ParentBox>
+    </>
   );
 };
 

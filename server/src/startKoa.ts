@@ -1,3 +1,4 @@
+import { USE_SPA } from '@local/common/configs';
 import Koa from 'koa';
 import Router from 'koa-router';
 import onerror from 'koa-onerror';
@@ -10,7 +11,7 @@ import koaPushState from 'koa-push';
 import staticServer from 'koa-static';
 import cors from '@koa/cors';
 import {
-  MAX_FILE_SIZE,
+  MAX_UPLOAD_FILE_SIZE,
   htmlFrontendPath,
   htmlResourcesPath,
   htmlResourcesUploadsPath,
@@ -19,8 +20,6 @@ import { main as controller } from './controllers/index';
 import { nanoid } from 'nanoid';
 import authApiRateLimit from './middlewares/authApiRateLimit';
 import allApiRateLimit from './middlewares/allApiRateLimit';
-
-const USE_SPA = true;
 
 export function startKoa() {
   const app = new Koa();
@@ -55,27 +54,28 @@ function applyApp(app: Koa) {
   );
 
   // body解析，文件上传
-  app.use(
-    bodyPaser({
-      jsonLimit: '100mb',
-      multipart: true,
-      formidable: {
-        uploadDir: htmlResourcesUploadsPath,
-        maxFileSize: MAX_FILE_SIZE * 1024 * 1024, // MAX_FILE_SIZE MB
-        multiples: false,
-        onFileBegin: (name, file) => {
-          const { originalFilename } = file;
-          const fileName = (originalFilename || '').replace(/[\/\\]/g, '');
-          const ext = path.extname(fileName);
-          // 使用原始名+随机文件名
-          const newFilename =
-            path.basename(fileName, ext) + '.' + nanoid() + ext;
-          file.newFilename = newFilename;
-          file.filepath = path.join(htmlResourcesUploadsPath, newFilename);
+  MAX_UPLOAD_FILE_SIZE &&
+    app.use(
+      bodyPaser({
+        jsonLimit: '100mb',
+        multipart: true,
+        formidable: {
+          uploadDir: htmlResourcesUploadsPath,
+          maxFileSize: MAX_UPLOAD_FILE_SIZE * 1024 * 1024, // MAX_FILE_SIZE MB
+          multiples: false,
+          onFileBegin: (name, file) => {
+            const { originalFilename } = file;
+            const fileName = (originalFilename || '').replace(/[\/\\]/g, '');
+            const ext = path.extname(fileName);
+            // 使用原始名+随机文件名
+            const newFilename =
+              path.basename(fileName, ext) + '.' + nanoid() + ext;
+            file.newFilename = newFilename;
+            file.filepath = path.join(htmlResourcesUploadsPath, newFilename);
+          },
         },
-      },
-    })
-  );
+      })
+    );
 
   // 权限验证中间件
   app.use(allApiRateLimit);

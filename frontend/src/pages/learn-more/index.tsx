@@ -9,8 +9,7 @@ const LearnMorePage = () => {
       <CentralBox flexGrow={1}>
         <Box>
           <Typography variant="h6" align="center" color="black" mb={4}>
-            React Frontend + NodeJS Server + Docker Deployment all in one
-            project.
+            React Frontend + NodeJS Server +Packaging all in one project.
           </Typography>
           <Typography variant="body1">- TypeScript supported</Typography>
           <Typography variant="body1">

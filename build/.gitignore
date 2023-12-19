@@ -1,2 +1,10 @@
-app
-app.zip
+node_modules
+base/app
+base/info
+docker/info
+electron/info
+electron/output
+electron/output.zip
+portable/info
+portable/output
+portable/output.zip

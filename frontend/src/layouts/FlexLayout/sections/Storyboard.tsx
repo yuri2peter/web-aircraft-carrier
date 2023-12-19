@@ -1,3 +1,4 @@
+import { APP_NAME } from '@local/common/configs';
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import CentralBox from 'src/components/miscs/CentralBox';
@@ -62,7 +63,7 @@ const Storyboard: React.FC = () => {
             variant="h5"
             // sx={{ textShadow: '2px 2px 4px rgb(0 0 0 / 50%)' }}
           >
-            Web Aircraft Carrier
+            {APP_NAME}
           </Typography>
         </Stack>
       </CentralBox>
