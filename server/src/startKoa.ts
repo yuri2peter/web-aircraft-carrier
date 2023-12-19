@@ -1,4 +1,4 @@
-import { USE_SPA } from '@local/common/configs';
+import { USE_CORS, USE_SPA } from '@local/common/configs';
 import Koa from 'koa';
 import Router from 'koa-router';
 import onerror from 'koa-onerror';
@@ -29,7 +29,7 @@ export function startKoa() {
 
 function applyApp(app: Koa) {
   onerror(app);
-  app.use(cors());
+  USE_CORS && app.use(cors());
   app.use(new CSRF());
 
   fs.ensureDirSync(htmlFrontendPath);

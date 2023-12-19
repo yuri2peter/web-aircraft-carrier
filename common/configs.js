@@ -9,6 +9,9 @@ export const USE_PWA = false;
 // 是否启用SPA（单页应用）
 export const USE_SPA = true;
 
+// 是否启用cors（简单跨域）
+export const USE_CORS = false;
+
 // 是否启用Socket.IO
 export const USE_SOCKET = false;
 

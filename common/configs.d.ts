@@ -6,4 +6,5 @@ export declare const DEV_SERVER_PORT: number;
 export declare const MAX_UPLOAD_FILE_SIZE: number;
 export declare const COOKIE_NAME: string;
 export declare const USE_SOCKET: boolean;
+export declare const USE_CORS: boolean;
 export declare const CHII_PORT: number;
