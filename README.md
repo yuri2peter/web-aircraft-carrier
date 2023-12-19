@@ -10,7 +10,11 @@ React Frontend + NodeJS Server + Packaging all in one project.
 - TypeScript supported
 - Tool Scripts for development and deployment
 
-## Quick Start
+## Starts with an existing blank project
+
+unzip [this zip file](https://github.com/yuri2peter/web-aircraft-carrier/releases/download/v1.0.0/wac.zip) to your project folder.
+
+## Initialize
 
 ```
 sh init.sh
