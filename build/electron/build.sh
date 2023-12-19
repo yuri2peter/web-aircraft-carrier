@@ -7,6 +7,11 @@ if [ ! -d "./output" ]; then
   exit 1
 fi
 
+if [ ! -d "../base/app" ]; then
+  echo "Please build base app first."
+  exit 1
+fi
+
 if [ -d "./output/resources/app" ]; then
   rm -rf ./output/resources/app
 fi

@@ -16,21 +16,15 @@ case $input in
       sh build.sh
       ;;
     2)
-      cd ./base
-      sh build.sh
-      cd ../electron
+      cd ./electron
       sh build.sh
       ;;
     3)
-      cd ./base
-      sh build.sh
-      cd ../portable
+      cd ./portable
       sh build.sh
       ;;
     4)
-      cd ./base
-      sh build.sh
-      cd ../docker
+      cd ./docker
       sh build.sh
       ;;
     *)

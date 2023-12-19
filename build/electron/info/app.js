@@ -21,10 +21,15 @@ process.on("uncaughtException", function (error) {
 function createWindow(URL) {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 760,
     autoHideMenuBar: true,
+    // title: "-",
   });
+
+  // mainWindow.on("page-title-updated", (e) => {
+  //   e.preventDefault();
+  // });
 
   // Reload Page: Ctrl + Shift + R.
   mainWindow.loadURL(URL);

@@ -37,4 +37,5 @@ Unzip [wac.zip](https://github.com/yuri2peter/web-aircraft-carrier/releases/down
 
 ## Version History
 
+- 1.1.0 - Simplified build scripts
 - 1.0.0 - Initial release

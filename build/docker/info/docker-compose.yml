@@ -1,15 +1,11 @@
-## Deployment
-
-```yml
 version: "3.8"
 services:
   myapp:
     image: "myapp:v1"
     restart: unless-stopped
     volumes:
-      # - ./volumes/.env:/app/.env
+      - ./volumes/.env:/app/.env
       - ./volumes/db:/app/data/db
       - ./volumes/uploads:/app/html/resources/uploads
     ports:
       - 3000:3000
-```
