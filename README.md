@@ -12,13 +12,22 @@ React Frontend + NodeJS Server + Packaging all in one project.
 
 ## Starts with an existing blank project
 
-unzip [this zip file](https://github.com/yuri2peter/web-aircraft-carrier/releases/download/v1.0.0/wac.zip) to your project folder.
+Unzip [wac.zip](https://github.com/yuri2peter/web-aircraft-carrier/releases/download/v1.0.0/wac.zip) to your project folder.
 
 ## Initialize
 
 ```
 sh init.sh
 ```
+
+## Build
+
+```
+cd build
+sh build.sh
+```
+
+Unzip [wac.zip](https://github.com/yuri2peter/web-aircraft-carrier/releases/download/v1.0.0/build.zip) to ./build to get ready for more build tools.
 
 ## Related Projects
 
