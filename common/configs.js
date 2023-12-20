@@ -28,4 +28,4 @@ export const MAX_UPLOAD_FILE_SIZE = 0;
 export const COOKIE_NAME = 'token';
 
 // Chii Debug Port (web控制台)
-export const CHII_PORT = 8080;
+export const CHII_PORT = 0;

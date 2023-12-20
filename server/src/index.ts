@@ -24,7 +24,7 @@ export async function startServer(): Promise<number> {
         // @ts-ignore
         port = server.address().port;
       } catch (error) {}
-      console.log('Server started at ' + new Date().toLocaleString());
+      console.log('Http server started at ' + new Date().toLocaleString());
       const url = `http://localhost:${port}`;
       console.log('Local:   ' + url);
       resolve(port);

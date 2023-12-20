@@ -16,7 +16,7 @@ import {
   htmlResourcesPath,
   htmlResourcesUploadsPath,
 } from './configs';
-import { main as controller } from './controllers/index';
+import { ctrls as controller } from './controllers/index';
 import { nanoid } from 'nanoid';
 import authApiRateLimit from './middlewares/authApiRateLimit';
 import allApiRateLimit from './middlewares/allApiRateLimit';

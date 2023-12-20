@@ -20,6 +20,11 @@ export const myTheme = createTheme({
       defaultProps: {
         size: 'small',
       },
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
     },
     MuiIconButton: {
       defaultProps: {
