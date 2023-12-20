@@ -1,3 +1,4 @@
+import './hacks';
 import openBrowsers from 'open-browsers';
 import { startKoa } from './startKoa';
 import { startIO } from './startIO';

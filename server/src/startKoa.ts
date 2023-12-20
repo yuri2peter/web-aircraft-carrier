@@ -54,28 +54,30 @@ function applyApp(app: Koa) {
   );
 
   // body解析，文件上传
-  MAX_UPLOAD_FILE_SIZE &&
-    app.use(
-      bodyPaser({
-        jsonLimit: '100mb',
-        multipart: true,
-        formidable: {
-          uploadDir: htmlResourcesUploadsPath,
-          maxFileSize: MAX_UPLOAD_FILE_SIZE * 1024 * 1024, // MAX_FILE_SIZE MB
-          multiples: false,
-          onFileBegin: (name, file) => {
-            const { originalFilename } = file;
-            const fileName = (originalFilename || '').replace(/[\/\\]/g, '');
-            const ext = path.extname(fileName);
-            // 使用原始名+随机文件名
-            const newFilename =
-              path.basename(fileName, ext) + '.' + nanoid() + ext;
-            file.newFilename = newFilename;
-            file.filepath = path.join(htmlResourcesUploadsPath, newFilename);
-          },
-        },
-      })
-    );
+
+  app.use(
+    bodyPaser({
+      jsonLimit: '100mb',
+      multipart: true,
+      formidable: MAX_UPLOAD_FILE_SIZE
+        ? {
+            uploadDir: htmlResourcesUploadsPath,
+            maxFileSize: MAX_UPLOAD_FILE_SIZE * 1024 * 1024, // MAX_FILE_SIZE MB
+            multiples: false,
+            onFileBegin: (name, file) => {
+              const { originalFilename } = file;
+              const fileName = (originalFilename || '').replace(/[\/\\]/g, '');
+              const ext = path.extname(fileName);
+              // 使用原始名+随机文件名
+              const newFilename =
+                path.basename(fileName, ext) + '.' + nanoid() + ext;
+              file.newFilename = newFilename;
+              file.filepath = path.join(htmlResourcesUploadsPath, newFilename);
+            },
+          }
+        : undefined,
+    })
+  );
 
   // 权限验证中间件
   app.use(allApiRateLimit);
