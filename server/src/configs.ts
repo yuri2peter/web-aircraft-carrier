@@ -17,6 +17,7 @@ MAX_UPLOAD_FILE_SIZE=
 
 // paths
 export const ROOT_PATH: string = path.resolve(__dirname, '../');
+export const assetsPath = path.join(ROOT_PATH, 'assets');
 export const htmlFrontendPath = path.join(ROOT_PATH, 'html/frontend');
 export const htmlResourcesPath = path.join(ROOT_PATH, 'html/resources');
 export const htmlResourcesUploadsPath = path.join(htmlResourcesPath, 'uploads');

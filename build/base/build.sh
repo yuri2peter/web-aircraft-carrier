@@ -19,6 +19,7 @@ fi
 mkdir -p ./build/base/app/html
 cp -r ./server/dist ./build/base/app
 cp -r ./server/html/frontend ./build/base/app/html
+cp -r ./server/assets ./build/base/app
 cp -r ./build/base/info/. ./build/base/app
 
 echo "App base build success!"
